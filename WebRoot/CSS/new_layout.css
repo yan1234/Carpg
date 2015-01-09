@@ -814,7 +814,8 @@ a.showAll {
 #view_rankCarpic {
 	width: 290px;
 	height: 140px;
-	background-color: #CCCCCC;
+	background-image: url(../images/img/view_rankCarPic.png);
+	background-position: center center;
 }
 .view_rankDetailNav ul {
 	height: 38px;
