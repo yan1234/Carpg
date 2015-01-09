@@ -3,7 +3,11 @@
 <%
 
 	String param = request.getParameter("param");
-	String deString = URLDecoder.decode(URLDecoder.decode(param, "utf-8"));
+	String deString = "";
+	if (param != null && param!= ""){
+		deString = URLDecoder.decode(URLDecoder.decode(param, "utf-8"));
+	}
+	
 %>
 
 <!DOCTYPE html>
@@ -32,8 +36,8 @@
 <jsp:include page="/JSP/module_header.jsp" flush="true" ></jsp:include>
         <div  class="global_content">
 			<div  class="index_rank right">
-             <jsp:include page="/JSP/module_rank.jsp"></jsp:include>
-             <jsp:include page="/HTML/right_news.html"></jsp:include>
+             <jsp:include page="/JSP/module_rank.jsp" flush="true"></jsp:include>
+             <jsp:include page="/JSP/module_report.jsp" flush="true"></jsp:include>
 	    	</div>
 		
 		    <div class="index_content left">
