@@ -36,8 +36,8 @@ function addnewsPre(objID,mjson){
 			myjson = newsPreJson2;
 			count = i - 5;
 		}
-		document.getElementById("param").value = JSON.stringify(myjson[count]);
-		document.getElementById("form").submit();
+		document.getElementById("paramModule").value = JSON.stringify(myjson[count]);
+		document.getElementById("formModule").submit();
 		return true;
 	}
 function loadnewsPre(){

@@ -180,17 +180,24 @@ function getPreviewText (str) {
 	atext+="......";//加上省略号输出
 	return atext;
 }
+
 //给新闻列表加上点击事件
 function setLiClick () {
 	var lia=document.getElementsByClassName("newsPreContent");
 	for (var i = 0; i < lia.length; i++) {
-		var value=lia[i].value;
 		lia[i].onclick=function (){
-	var str=JSON.stringify(msgJson[value]);
-	window.location.href=""+encodeURI(encodeURI('report_detail.jsp?param='+str));
-}
+		document.getElementById("paramShow").value = JSON.stringify(msgJson[this.value]);
+		document.getElementById("formShow").submit();
+		return true;		
+		}
+
 	}
 }
+function postShow(){
+		document.getElementById("paramShow").value = JSON.stringify(msgJson[this.value]);
+		document.getElementById("formShow").submit();
+		return true;
+		}
 //新闻详情页面
 function loadnewsDetail () {
 	document.getElementById("category").innerHTML=""+news.category;
@@ -252,3 +259,10 @@ window.onscroll = function(){
 	 window.setTimeout("loadmessage(maxsize);setLiClick();",500);　　　　
 　　}
 };
+var jakeJson=[
+{"type":"1","category":"汽车召回","car":"沃尔沃XC60/S60L","seller":"浙江豪情汽车","time":"12-31","author":"国家质检总局","image":"../images/img/newsSmallPic.png","nTitle":"浙江豪情汽车召回部分国产沃尔沃XC60/S60L","content":"<p style=\"color=black\">日前，浙江豪情汽车制造有限公司根据《缺陷汽车产品召回管理条例》的要求，向国家质检总局备案了召回计划，决定自2014年12月31日起，召回2014年11月12日至2014年11月19日期间生产的部分国产2015款沃尔沃XC60及S60L汽车，共计529辆。</p>","praise":11,"url":"http://www.dpac.gov.cn/"},
+{"type":"1","category":"汽车召回","car":"沃尔沃XC60/S60L","seller":"浙江豪情汽车","time":"12-31","author":"国家质检总局","image":"../images/img/newsSmallPic.png","nTitle":"浙江豪情汽车召回部分国产沃尔沃XC60/S60L","content":"<p style=\"color=black\">日前，浙江豪情汽车制造有限公司根据《缺陷汽车产品召回管理条例》的要求，向国家质检总局备案了召回计划，决定自2014年12月31日起，召回2014年11月12日至2014年11月19日期间生产的部分国产2015款沃尔沃XC60及S60L汽车，共计529辆。</p>","praise":11,"url":"http://www.dpac.gov.cn/"},
+{"type":"1","category":"汽车召回","car":"沃尔沃XC60/S60L","seller":"浙江豪情汽车","time":"12-31","author":"国家质检总局","image":"../images/img/newsSmallPic.png","nTitle":"浙江豪情汽车召回部分国产沃尔沃XC60/S60L","content":"<p style=\"color=black\">日前，浙江豪情汽车制造有限公司根据《缺陷汽车产品召回管理条例》的要求，向国家质检总局备案了召回计划，决定自2014年12月31日起，召回2014年11月12日至2014年11月19日期间生产的部分国产2015款沃尔沃XC60及S60L汽车，共计529辆。</p>","praise":11,"url":"http://www.dpac.gov.cn/"},
+{"type":"1","category":"汽车召回","car":"沃尔沃XC60/S60L","seller":"浙江豪情汽车","time":"12-31","author":"国家质检总局","image":"../images/img/newsSmallPic.png","nTitle":"浙江豪情汽车召回部分国产沃尔沃XC60/S60L","content":"<p style=\"color=black\">日前，浙江豪情汽车制造有限公司根据《缺陷汽车产品召回管理条例》的要求，向国家质检总局备案了召回计划，决定自2014年12月31日起，召回2014年11月12日至2014年11月19日期间生产的部分国产2015款沃尔沃XC60及S60L汽车，共计529辆。</p>","praise":11,"url":"http://www.dpac.gov.cn/"},
+{"type":"1","category":"汽车召回","car":"沃尔沃XC60/S60L","seller":"浙江豪情汽车","time":"12-31","author":"国家质检总局","image":"../images/img/newsSmallPic.png","nTitle":"浙江豪情汽车召回部分国产沃尔沃XC60/S60L","content":"<p style=\"color=black\">日前，浙江豪情汽车制造有限公司根据《缺陷汽车产品召回管理条例》的要求，向国家质检总局备案了召回计划，决定自2014年12月31日起，召回2014年11月12日至2014年11月19日期间生产的部分国产2015款沃尔沃XC60及S60L汽车，共计529辆。</p>","praise":11,"url":"http://www.dpac.gov.cn/"},
+];
