@@ -1,9 +1,9 @@
 package com.carpg.controller;
 
-import com.carpg.dao.UserDao;
+import com.carpg.dao.UserinfoDao;
 import com.carpg.dto.Report;
 import com.carpg.dto.User;
-import com.carpg.impl.UserImpl;
+import com.carpg.impl.UserinfoImpl;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 

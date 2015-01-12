@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<div class="content3" id="iniframe">
-			<form  id="form" method="post" onsubmit="return false;">
+			<form  id="form" method="post" onsubmit="return doCheck();">
 			<h2>-添加车型-</h2>
 			<div class="addcar_left">
 			<h4>-汽车品牌-</h4>
@@ -114,7 +114,7 @@
 			<div id="text_forVIN">	
 				<p>为了给您争取到更大的优势以及统计更可信的结果，请您务必填写车辆识别码</p>
 			</div>
-			<button class="dashButtons thenext_btn" onClick="return doCheck();">下一步</button>
+			<button class="dashButtons thenext_btn">下一步</button>
 			<input type="text" id="brands" name="brand" hidden="true" value="add_car" />
 			<input type="text" id="car_type" name="car_type" hidden="true" value="add_car" />
 			</form>

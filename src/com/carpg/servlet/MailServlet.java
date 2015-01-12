@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.carpg.dao.UserDao;
-import com.carpg.impl.UserImpl;
+import com.carpg.dao.UserinfoDao;
+import com.carpg.impl.UserinfoImpl;
 
 public class MailServlet extends HttpServlet {
 
@@ -52,10 +52,10 @@ public class MailServlet extends HttpServlet {
 		//表示是注册邮箱认证
 		if (type.equals("regist")){
 			
-			UserDao userDao = new UserImpl();
+			UserinfoDao userDao = new UserinfoImpl();
 			if (userDao.verifyUser(name, code)){
 				//跳转到注册成功页面
-				response.sendRedirect("../JSP/index.jsp");
+				response.sendRedirect("../index.jsp");
 			}
 		}//表示是找回密码邮箱认证
 		else if (type.equals("return_password")){

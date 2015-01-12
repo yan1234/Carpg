@@ -18,7 +18,7 @@
 <filter>
     <filter-name>struts2</filter-name>
     <filter-class>
-        org.apache.struts2.dispatcher.FilterDispatcher            
+        org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter         
     </filter-class>
 </filter>
 <filter-mapping>
@@ -26,6 +26,15 @@
     <url-pattern>/*</url-pattern>
 </filter-mapping>
 <!-- 判断页面的访问权限 -->
+
+<filter>
+  	<filter-name>MyFilter</filter-name>
+  	<filter-class>com.yj.carpg.util.MyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>MyFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
   <filter>
      <filter-name>CheckFilter</filter-name>
       <filter-class>com.carpg.controller.CheckFilter</filter-class>

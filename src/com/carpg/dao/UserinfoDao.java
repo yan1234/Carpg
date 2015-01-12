@@ -1,8 +1,9 @@
 package com.carpg.dao;
 
 import com.carpg.dto.User;
+import com.carpg.dto.Userinfo;
 
-public interface UserDao {
+public interface UserinfoDao {
 	
 	//登陆验证,传递参数为用户名和密码,返回error表示登陆失败，返回用户id+name表示登陆成功
 	public String checkLogin(String username, String password);
@@ -11,7 +12,7 @@ public interface UserDao {
 	public boolean checkUser(String username);
 	
 	//注册，传递参数为用户信息User对象
-	public boolean Regist(User user);
+	public boolean Regist(Userinfo user);
 	
 	//邮箱验证,传递参数为用户名和匹配的code码
 	public boolean verifyUser(String username, String code);

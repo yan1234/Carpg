@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.carpg.dao.UserDao;
-import com.carpg.impl.UserImpl;
+import com.carpg.dao.UserinfoDao;
+import com.carpg.impl.UserinfoImpl;
 
 public class AjaxServlet extends HttpServlet {
 
@@ -54,7 +54,7 @@ public class AjaxServlet extends HttpServlet {
 		if (type.equals("username")){
 			String username = request.getParameter("username");
 			System.out.println("传递的参数: "+username);
-			UserDao userDao = new UserImpl();
+			UserinfoDao userDao = new UserinfoImpl();
 			if (!userDao.checkUser(username)){
 				//out.println("用户名称["+username+"]已经被注册，请更换其他用户名称再注册。");
 				ok = "success";
@@ -63,7 +63,7 @@ public class AjaxServlet extends HttpServlet {
 		else if (type.equals("login")){
 			String check = "";
 			//登陆成功
-			UserDao userDao = new UserImpl();
+			UserinfoDao userDao = new UserinfoImpl();
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String code = request.getParameter("verify");

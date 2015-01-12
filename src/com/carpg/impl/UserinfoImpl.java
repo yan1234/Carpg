@@ -8,21 +8,22 @@ import java.util.Calendar;
 
 import javax.mail.MessagingException;
 
-import com.carpg.dao.UserDao;
+import com.carpg.dao.UserinfoDao;
 import com.carpg.dto.User;
+import com.carpg.dto.Userinfo;
 import com.carpg.util.DBHelper;
 import com.carpg.util.JavaMail;
 import com.carpg.util.Tools;
 
 
-public class UserImpl implements UserDao {
+public class UserinfoImpl implements UserinfoDao {
 	
 	private Connection conn=null;
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	private String sql="";
 
-	public UserImpl() {
+	public UserinfoImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,35 +32,35 @@ public class UserImpl implements UserDao {
 		
 	}
 
-	public boolean Regist(User user) {
+	public boolean Regist(Userinfo user) {
 		// TODO Auto-generated method stub
-		System.out.println("用户呢称:"+user.getName());
+		System.out.println("用户呢称:"+user.getUseralias());
 		boolean ok = false;
 		//将用户密码变成密文
-		String temp = Tools.getMD5(user.getPassword());
-		user.setPassword(temp);
+		String temp = Tools.getMD5(user.getUserpwd());
+		user.setUserpwd(temp);
 		//生成邮箱验证的code,以当前时间随机生成
 		Calendar c = Calendar.getInstance();
-		user.setCode(String.valueOf(c.getTimeInMillis()));
+		user.setUsercode(String.valueOf(c.getTimeInMillis()));
 		conn = DBHelper.getConn();
 		sql = "insert into user value(null, ?,?,?,?,?,?,?,?,0,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user.getEmail());
-			pstmt.setString(2, user.getName());
-			pstmt.setString(3, user.getPassword());
+			pstmt.setString(2, user.getUseralias());
+			pstmt.setString(3, user.getUserpwd());
 			pstmt.setString(4, user.getEmail());
 			pstmt.setString(5, user.getTel());
 			pstmt.setString(6, user.getProvince());
 			pstmt.setString(7, user.getCity());
-			pstmt.setString(8, user.getSection());
-			pstmt.setString(9, user.getCode());
+			pstmt.setString(8, user.getUsersection());
+			pstmt.setString(9, user.getUsercode());
 			
 			pstmt.executeUpdate();
 			//发送邮件验证信息
 			JavaMail mail = new JavaMail();
 			try {
-				mail.sendVerify(user.getEmail(), user.getName(), user.getCode(),"regist");
+				mail.sendVerify(user.getEmail(), user.getUseralias(), user.getUsercode(),"regist");
 				ok = true;
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
