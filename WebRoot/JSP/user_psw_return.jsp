@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if (document.getElementById("verify").value != ""){
 			document.getElementById("login_reg").action="userOperate!returnPsw";
 			document.getElementById("login_reg").submit();
-			parent.location.reload;
+			parent.location.reload();
 			return true;
 		}else {alert("请输入验证码");return false;}
 		

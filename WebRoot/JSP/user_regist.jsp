@@ -4,9 +4,9 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 //得到用户信息
-String name = (String)request.getAttribute("name");
+String name = (String)request.getAttribute("useralias");
 String email = (String)request.getAttribute("email");
-String psw = (String)request.getAttribute("password");
+String psw = (String)request.getAttribute("userpwd");
 %>
 <script type="text/javascript" src="../JS/util.js"></script>
 <script type="text/javascript">
@@ -42,11 +42,12 @@ String psw = (String)request.getAttribute("password");
   //验证信息
   function doCheck(){
   	var checkbox = document.getElementById("radiobutton");
-  	if (checkbox.checked == "true"){
+  	if (checkbox.checked == true){
   		//将地区码转变为对应的文字
   		changeToText();
   		document.getElementById("login_reg").action="userOperate!regist";
 		document.getElementById("login_reg").submit();
+		parent.location.reload();
 		//关闭iframe
 		closeIframe();
   	}else{

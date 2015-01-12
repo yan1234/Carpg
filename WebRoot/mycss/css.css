@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+body{
+	margin-left: 0;
+	margin-top: 0;
+	font-size: 15px;
+	color: #7b7b7b;
+	text-align: center;
+	background-image: url(../images/bg_body.JPG);
+}
+
+#dbody{
+	width:998px;
+	height:auto;
+	position: relative;
+	right:auto;
+	left:auto;
+	margin: 0 auto;
+}
+
+#dtop{
+	width:998px;
+	height:220px;
+	background-image: url(../images/top.jpg);
+	background-repeat: repeat-x;
+}
+	
+#dnavi{
+	width:998px;
+	height:50px;
+	background-image: url(../images/bg/bg_navi.JPG);
+}
+
+#dcontent{
+	width:998px;
+	height:850px;
+}
+
+#dbottom{
+	margin-top:20px;
+	width:998px;
+	height:100px;
+}
+
+/*********************** index.jsp */
+#dleft{
+	width:198px;
+	height:850px;
+	float:left;
+}
+
+#dleft_top{
+	margin-top: 10px;
+}
+
+#dcenter{
+	width:800px;
+	height:850px;
+	float:left;
+}
+
+#dcenter_index a{
+	
+}
+
+#dcar{
+	width:800px;
+	height:130px;
+	float:none;
+}
+
+.filterbar {
+	overflow: hidden;
+	margin-bottom: 10px;
+	background-color: #f3f3f3;
+	border-bottom: 1px solid #dcdee1;
+}
+
+
+/************************* carDetails */
+#cardetailleft{
+	width:198px;
+	height:500px;
+	float:left;
+}
+
+#cardetailleft_top{
+	margin-top: 10px;
+}
+
+#cardetailcenter{
+	width:600px;
+	height:500px;
+	float:left;
+}
+
+#cardetailcenter_top{
+	width:600px;
+	height:300px;
+}
+
+#cardetailcenter_img{
+	width:300px;
+	height:300px;
+	float:left;
+}
+
+#cardetailcenter_display{
+	width:250px;
+	height:300px;
+	float:left;
+}
+
+#cardetailcenter_display ul li{
+	list-style-type: none;
+	margin-top:40px;
+	color: purple;
+}
+
+#cardetailcenter_button{
+	width:600px;
+	height:35px;
+}
+
+#cardetailcenter_button a{
+	float:right;
+}
+
+#cardetailcenter_info{
+	float:left;
+	width:600px;
+	height:165px;
+	margin-top:20px;
+	text-align: left;
+}
+
+#cardetailright{
+	width:200px;
+	height:500px;
+	float:left;
+}
+
+
+#dnavi ul li{
+	list-style-type: none;
+	float: left;
+	padding-left:100px;
+	margin-top: 15px;
+}
+
+ul li a{
+	text-decoration: none;
+	color: white;
+	font-size:16px;
+	font-family: 微软雅黑;
+}
+
+ul li a:HOVER {
+	text-decoration: underline;
+	color:blue;
+}
+
+img{
+	border:0;
+}

@@ -39,8 +39,8 @@ public class JavaMail {
 	   message.setRecipient(RecipientType.TO,new InternetAddress(email));
 	   message.setSentDate(new Date());
 	   message.setSubject("Carpg");
-	   String m="<a href="+"http://120.24.211.77/Carpg/servlet/MailServlet.sl?name="+email+"&type="+type+"&randMd5="+code+">" +
-	     "http://120.24.211.77/Carpg/servlet/MailServlet.sl?name="+email+"&type="+type+"&randMd5="+code+"</a>";
+	   String m="<a href="+"http://120.24.211.77:8080/Carpg/servlet/MailServlet.sl?name="+email+"&type="+type+"&randMd5="+code+">" +
+	     "http://120.24.211.77:8080/Carpg/servlet/MailServlet.sl?name="+email+"&type="+type+"&randMd5="+code+"</a>";
 	   message.setContent(m,"text/html;charset=utf-8");
 	   Transport.send(message);
 	  }

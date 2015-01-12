@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- struts常量定义 -->  
+    <constant name="struts.multipart.parser" value="jakarta"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<constant name="struts.devMode" value="true"></constant>
+    <!-- 指定struts国际化资源文件的baseName -->  
+    <constant name="struts.custom.i18n.resources" value="messageResource"/>  
+    <!-- 指定每次HTTP请求时是否重新加载国际化资源文件，默认为false,开发阶段设为true -->  
+    <constant name="struts.i18n.reload" value="true"/>  
+    <!-- 配置应用的编码方式 -->  
+    <constant name="struts.i18n.encoding" value="UTF-8"/>  
+    <!-- struts.xml变更时是否自动重新加载 -->  
+    <constant name="struts.configuration.xml.reload" value="true"/>  
+    <!-- 限定上传文件最大大小4M,struts2默认maxSize为2M -->  
+    <constant name="struts.multipart.maxSize" value="4194304"></constant>  
+    <!-- 指定上传文件时临时文件的存放路径,设为"/tempUpload"将在 项目所在盘下创建文件夹tempUpload-->  
+    <constant name="struts.multipart.saveDir" value="/tempUpload"></constant>
+	
+	
+	<package name="Carpg" extends="struts-default">
+		<action name="test" class = "com.carpg.controller.TestAction">
+			<result>/index.jsp</result>
+			<result name="index" >/index.jsp</result>
+		</action>
+		
+		<action name="userOperate" class = "com.carpg.controller.UserinfoAction">
+			<result>/index.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
+			<result name="login" type="redirect">user_login.jsp</result>
+			<result name="regist">user_regist.jsp</result>
+			<result name="step2" type="redirect">complaint_step2.jsp</result>
+		</action>
+		<action name="carOperate" class = "com.carpg.controller.CarAction">
+			<result>/index.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
+			<result name="step2" type="redirect">complaint_step2.jsp</result>
+		</action>
+		<action name="complaintOperate" class = "com.carpg.controller.ComplaintAction">
+			<result>index.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
+			<result name="login" type="redirect">user_login.jsp</result>
+			<result name="step2" type="redirect">complaint_step2.jsp</result>
+			<result name="step3" type="redirect">complaint_step3.jsp</result>
+			<result name="view">complaint_view.jsp</result>
+			
+			<!-- 配置fileUpload拦截器 -->  
+            <interceptor-ref name="fileUpload">  
+                <!-- 配置允许上传的文件类型-->  
+                <param name="allowedTypes">image/x-ms-bmp,image/jpeg,image/gif,image/png,image/x-png,application/excel,application/vnd.ms-excel</param>   
+                <!-- 配置允许上传的文件大小 -->  
+                <param name="maximumSize">2048000</param>  
+            </interceptor-ref>  
+            <interceptor-ref name="defaultStack"></interceptor-ref>  
+            <!-- 配置上传文件的保存的相对路径 -->  
+            <param name="savePath">/images/complaint</param>  
+		</action>
+		<action name="reportOperate" class = "com.carpg.controller.ReportAction">
+			<result>/index.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
+			<result name="show">report_show.jsp</result>
+			<result name="detail">report_detail.jsp</result>
+			<!-- 配置fileUpload拦截器 -->  
+            <interceptor-ref name="fileUpload">  
+                <!-- 配置允许上传的文件类型-->  
+                <param name="allowedTypes">image/x-ms-bmp,image/jpeg,image/gif,image/png,image/x-png,application/excel,application/vnd.ms-excel</param>   
+                <!-- 配置允许上传的文件大小 -->  
+                <param name="maximumSize">2048000</param>  
+            </interceptor-ref>  
+            <interceptor-ref name="defaultStack"></interceptor-ref>  
+            <!-- 配置上传文件的保存的相对路径 -->  
+            <param name="savePath">/images/report</param> 
+		</action>
+		<action name="statisticOperate" class = "com.carpg.controller.StatisticAction">
+			<result>/index.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
+			<result name="rank">rank_total.jsp</result>
+		</action>
+		<action name="index" class = "com.carpg.controller.index">
+			<result name="index" type="redirect">/JSP/module_index.jsp</result>
+		</action>
+	</package>
+
+
+</struts>

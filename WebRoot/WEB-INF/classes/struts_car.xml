@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="pCarinfo" extends="struts-default">
+		<interceptors>
+			<interceptor name="sessionInterceptor" class="com.yj.carpg.controller.SessionInterceptor" />
+		</interceptors>
+	
+		<default-action-ref name="carinfo" />
+		
+		<action name="carinfo" class="com.yj.carpg.controller.CarinfoAction">
+			<result>markjsp/first.jsp</result>
+			<result name="carDetails">markjsp/carDetails.jsp</result>
+			<result name="shopcar">markjsp/shopcar.jsp</result>
+			<result name="saleCar">markjsp/salecar.jsp</result>
+			<result name="redirect">markjsp/redirect.jsp</result>
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="sessionInterceptor" />
+		</action>
+		
+		<action name="userinfo" class="com.yj.carpg.controller.UserinfoAction">
+			<result name="success" type="redirectAction">carinfo!pagingCarinfo.action</result>
+			<result name="login" >../JSP/login.jsp</result>
+			<result name="register">../JSP/regist.jsp</result>
+		</action>
+		
+	</package>
+
+</struts>

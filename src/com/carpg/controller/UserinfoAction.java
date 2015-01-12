@@ -16,30 +16,24 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.carpg.dao.UserDao;
+import com.carpg.dao.UserinfoDao;
 import com.carpg.dao.User_CarDao;
 import com.carpg.dto.User;
 import com.carpg.dto.User_Car;
-import com.carpg.impl.UserImpl;
+import com.carpg.dto.Userinfo;
+import com.carpg.impl.UserinfoImpl;
 import com.carpg.impl.User_CarImpl;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class UserAction extends ActionSupport implements ServletRequestAware,ServletResponseAware,ModelDriven<User>{
+public class UserinfoAction extends ActionSupport implements ServletRequestAware,ServletResponseAware,ModelDriven<Userinfo>{
 
-	private final static String ERROR = "error";
-	private final static String LOGIN = "login";
-	private final static String LOGIN_RE = "login_re";
-	private final static String REGIST = "regist";
-	private final static String VERIFY = "verify";
-	private final static String BACK_PSW = "return_psw";
-	private final static String UPDATE_PSW = "set_psw";
-	
+
 	private HttpServletResponse response;  
 	private HttpServletRequest request;  
-	private User user = new User();
-	private UserDao userDao = new UserImpl();
+	private Userinfo user = new Userinfo();
+	private UserinfoDao userDao = new UserinfoImpl();
 	private String message;
 	
 
@@ -79,8 +73,10 @@ public class UserAction extends ActionSupport implements ServletRequestAware,Ser
 	public String updatePsw() throws Exception{
 		//从session中取出保存的修改密码的用户信息和识别码,格式为：用户信息+“~”+识别码
 		String pswCode = (String)request.getSession().getAttribute("updatePsw");
-		String[] temp = pswCode.split("~");
-		userDao.updatePsw(temp[0], temp[1], user.getPassword());
+		if (pswCode != null && pswCode != ""){
+			String[] temp = pswCode.split("~");
+			userDao.updatePsw(temp[0], temp[1], user.getUserpwd());
+		}		
 		return "index";
 	}
 	
@@ -90,18 +86,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,Ser
 		request.getSession().removeAttribute("user");
 		return "index";
 	}
-	public User getModel() {
+	public Userinfo getModel() {
 		// TODO Auto-generated method stub
 		return user;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public String getMessage() {
 		return message;
