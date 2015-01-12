@@ -15,18 +15,12 @@
 		<title>选择车辆首页</title>
 		<link rel="stylesheet" type="text/css" href="mycss/css.css">
 		<link rel="stylesheet" href="CSS/new_layout.css" />
-
-		
-		<script type="text/javascript">
-			var url = "<%= basePath %>";
-			alert(url);
-		</script>
 	</head>
 
 	<body>
 		<div id="dbody">
 			<div>
-			<jsp:include page="/JSP/module_header.jsp" flush="true" ></jsp:include>
+			<jsp:include page="header.jsp" flush="true" ></jsp:include>
 			</div>
 			<div id="dcontent">
 				<div id="dleft">

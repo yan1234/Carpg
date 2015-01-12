@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
 	<div id="dbody">
 		<div>
-		<jsp:include page="../JSP/header.jsp" flush="true" ></jsp:include>
+		<jsp:include page="header.jsp" flush="true" ></jsp:include>
 		</div>
 		<div id="dcontent">
 			<div id="cardetailleft">
