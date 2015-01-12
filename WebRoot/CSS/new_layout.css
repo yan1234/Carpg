@@ -130,7 +130,8 @@ iframe {
 	width: 90px;
 	text-align: center;
 	margin-right: 10px;
-	font-size: 22px;
+	font-size: 18px;
+	font-weight: bold;
 }
 #header_nav>li:first-child {
 	width: 290px;

@@ -78,7 +78,7 @@ function showNews () {
 	}
 }
 //吐槽展示页面创建DOM
-function showComplain (i) {
+function showComplain () {
 	//整条评论的容器
 			if(msgJson[msgCount].car_brand){
 			var view_mainComplains=document.createElement("div");
@@ -147,7 +147,7 @@ function showComplain (i) {
 			for (var b = 0; b < actiontext.length; b++) {
 				var acli=document.createElement("li");				
 				var actionBtn=document.createElement("a");
-				actionBtn.id="actionBtn"+i+""+b;
+				actionBtn.id="actionBtn"+msgCount+""+b;
 				actionBtn.className="actionBtn";
 				actionBtn.innerHTML=""+actiontext[b];
 				acli.appendChild(actionBtn);
@@ -157,6 +157,7 @@ function showComplain (i) {
 			view_mainComplains.appendChild(view_complainContent);
 			//添加到吐槽显示区
 			document.getElementById("add_ccshere").appendChild(view_mainComplains);
+			msgCount++;
 			}else{
 			return false;
 			}
