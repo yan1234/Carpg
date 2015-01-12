@@ -5,7 +5,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <jsp:include page="/HTML/login_re.html"></jsp:include>
 <script type="text/javascript" src="../JS/jquery-1.7.2.min.js" ></script>
-<script type="text/javascript" src="../JS/util.js" ></script>
 <script type="text/javascript" src="../JS/ajax.js" ></script>
 <script type="text/javascript">
 //表单提交前的判断

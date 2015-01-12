@@ -68,6 +68,7 @@ function doCheck () {
 	
 	document.getElementById("form").action="complaintOperate!complaintStep3";
 	document.getElementById("form").submit();
+	alert("车曝光已收到您的反馈 :-)");
 	parent.location.reload();
 }
 </script>

@@ -8,7 +8,6 @@ String name = (String)request.getAttribute("name");
 String email = (String)request.getAttribute("email");
 String psw = (String)request.getAttribute("password");
 %>
-<script type="text/javascript" src="../JS/util.js"></script>
 <script type="text/javascript">
 	//加载页面信息,主要是填入已经编写的信息，昵称，邮箱，密码
 	function addInfo(){
