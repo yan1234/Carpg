@@ -1,4 +1,9 @@
 //控制排行页面柱状图
+new_element=document.createElement("script");
+new_element.setAttribute("type","text/javascript");
+new_element.setAttribute("src","../JS/external/json2.js");
+document.getElementsByTagName("head").item(0).appendChild(new_element);
+
 function jakeChart () {
 	var bjson=[
 	{"name":"一汽大众","nub":501},
@@ -46,15 +51,17 @@ function showChartB (bjson) {
 	rankBar.style.width=60*bjson.length+"px";
 	var sum=0;
 	for (var i = 0; i < bjson.length; i++) {
-		sum+=bjson[i].nub;		
+	if(bjson[i]!= null){
+		sum+=bjson[i].nub;}		
 	}
 	for (var i = 0; i < bjson.length; i++) {
+	if(bjson[i]!= null){
 		var a=document.createElement("li");
 		a.innerHTML=""+bjson[i].name;
 		a.Alt=""+bjson[i].nub;
 		var b=bjson[i].nub/sum+0.3;
 		a.style.backgroundPositionY=""+b.toPercent();
-		rankBar.appendChild(a);
+		rankBar.appendChild(a);}
 	}
 }
 	function setCar(value){

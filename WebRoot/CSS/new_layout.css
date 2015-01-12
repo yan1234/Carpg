@@ -7,6 +7,7 @@
 	margin: 0 auto;
 	overflow: hidden;
 }
+img {border: none;}
 img:hover {border: none;}
 * {
 	margin: 0;
@@ -33,6 +34,7 @@ a {
 	color: #000000;
 	text-decoration: none;
 	display: block;
+	border: none;
 }
 a:hover {
 	color: #B40000;

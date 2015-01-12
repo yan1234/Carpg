@@ -15,7 +15,7 @@ function addnewsPre(objID,mjson){
     var aul=document.getElementById(objID);
     var lis=aul.getElementsByTagName("li");
     for (var i=0;i<lis.length;i++){
-    if(mjson[i]){
+    if(null != mjson[i]){
     var atime = mjson[i].time.split("-");
     var mtime = atime[1]+"-"+atime[2];
 
@@ -47,4 +47,5 @@ addnewsPre("newsPre2",newsPreJson2);
 }
 addLoadEvent(loadnewsPre);
 </script>
+<script type="text/javascript" src="../JS/external/json2.js"></script>
 <jsp:include page="/HTML/right_news.html"></jsp:include>

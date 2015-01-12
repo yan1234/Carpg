@@ -12,6 +12,9 @@ function setmeta () {
 	var dmeta=document.createElement("meta");
 	dmeta.setAttribute("name","description");
 	dmeta.setAttribute("content","车曝网是国内首家收集整理车主驾驶体验信息的完全公开完全开放的民间网站，车曝网为广大车主以及准车主提供大量汽车质量的数据分析服务以及二手车交易信息服务。");
+	var emeta=document.createElement("meta");
+	emeta.setAttribute("name","renderer");
+	emeta.setAttribute("content","webkit");
 	ahead[0].appendChild(ameta);
 	ahead[0].appendChild(bmeta);
 	ahead[0].appendChild(cmeta);

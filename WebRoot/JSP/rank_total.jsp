@@ -19,6 +19,7 @@
 	    <script type="text/javascript" src="../JS/util.js" ></script>
 	    <script type="text/javascript" src="../JS/rank_total.js" ></script>
 	    <script src="../JS/setmeta.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="../JS/external/json2.js"></script>
 	    <script type="text/javascript">
         addLoadEvent(setmeta);//设置meta内容
 	    </script>
