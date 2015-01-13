@@ -1,6 +1,8 @@
+
 //写入meta charset
 function setmeta () {
 	var ahead=document.getElementsByTagName("head");
+	var aTitle=document.getElementsByTagName("title");
 	var ameta=document.createElement("meta");
 	ameta.setAttribute("charset","utf-8");
 	var bmeta=document.createElement("meta");
@@ -15,8 +17,13 @@ function setmeta () {
 	var emeta=document.createElement("meta");
 	emeta.setAttribute("name","renderer");
 	emeta.setAttribute("content","webkit");
-	ahead[0].appendChild(ameta);
-	ahead[0].appendChild(bmeta);
-	ahead[0].appendChild(cmeta);
-	ahead[0].appendChild(dmeta);
+	var fmeta=document.createElement("meta");
+	fmeta.setAttribute("http-equiv","X-UA-Compatible");
+	fmeta.setAttribute("content","IE=edge,chrome=1");
+
+	ahead[0].insertBefore(ameta,aTitle[0]);
+	ahead[0].insertBefore(bmeta,aTitle[0]);
+	ahead[0].insertBefore(cmeta,aTitle[0]);
+	ahead[0].insertBefore(dmeta,aTitle[0]);
+	ahead[0].insertBefore(emeta,aTitle[0]);
 }

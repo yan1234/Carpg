@@ -15,7 +15,6 @@
     ];	
 </script>
 <jsp:include page="/HTML/right_rank.html"></jsp:include>
-<script type="text/javascript" src="../JS/external/json2.js"></script>
 <script type="text/javascript">
     function loadrightrank (mtarget,mJson) {
     	//将小数转换为百分数

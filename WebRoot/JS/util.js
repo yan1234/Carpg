@@ -66,15 +66,6 @@ function removeClass( elements,cName ){
         elements.className = elements.className.replace( new RegExp( "(\\s|^)" + cName + "(\\s|$)" ), " " );  
     }    
 }
-//插入元素
-function insertAfter(newElement,targetElement) {
-  var parent = targetElement.parentNode;
-  if (parent.lastChild == targetElement) {
-    parent.appendChild(newElement);
-  } else {
-    parent.insertBefore(newElement,targetElement.nextSibling);
-  }
-}
 //字符转义
 function transStr(){
   str=str.replace(/\//,"\\\/");

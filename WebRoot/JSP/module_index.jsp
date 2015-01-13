@@ -5,6 +5,7 @@
 		<title>车曝光-促进车辆质量提升</title>
 		<link rel="stylesheet" href="../CSS/new_layout.css" />
 		<link rel="stylesheet" href="../CSS/color.css" />
+		<script type="text/javascript" src="../JS/external/json2.js"></script>
 		<script type="text/javascript" src="../JS/external/brand.js"></script>
 		<script type="text/javascript" src="../JS/external/brand_select.js"></script>
 	    <script type="text/javascript" src="../JS/util.js" ></script>
