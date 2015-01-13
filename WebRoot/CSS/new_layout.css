@@ -201,7 +201,7 @@ iframe {
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 1000;
+	z-index: 900;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(111, 111, 111, 0.2);
@@ -624,7 +624,7 @@ a.showAll {
 	height: 40px;
 	background-color: #FFFFFF;
 }
-#view_mainChooseTime ul a li {
+#view_mainChooseTime ul li a {
 	float: left;
 	margin-left: 10px;
 	line-height: 38px;
@@ -743,7 +743,8 @@ a.showAll {
 	border-radius: 4px;
 }
 #view_researchComplains input {
-	height: 100%;
+	height: 38px;
+	line-height: 38px;
 	width: 80%;
 	float: left;
 	border: none;
@@ -778,10 +779,13 @@ a.showAll {
 #view_rightNav ul li {
 	color: inherit;
 	font-size: 14px;
+	height:20px;
 	float: left;
 	margin: 5px;
 }
 #view_rightNav ul li a {
+	height:20px;
+	overflow: hidden;
 	display: block;
 }
 #view_rightNav ul li a:hover {
@@ -1012,7 +1016,7 @@ a.showAll {
 	width: 100%;
 }
 .color_yellow {
-	height: 500px;
+	height: 550px;
 	width: 100%;
 }
 .login_content {
@@ -1150,10 +1154,10 @@ a.showAll {
 }
 .instruction {
 	position: absolute;
-	top: 30px;
+	top: 36px;
 	right: 0;
 	width: 300px;
-	height: 150px;
+	height: 130px;
 }
 .carcolor {
 	width: 30px;
