@@ -20,10 +20,11 @@
  		//var username="123";
  		if (username != ""){
  			document.getElementById("UserName").innerHTML=""+username;
- 			document.getElementById("header_showUserName").hidden=false;
+ 			document.getElementById("header_showUserName").style.display="block";
+ 			document.getElementById("header_log_re").style.display="none";
  		}else{
- 			document.getElementById("header_log_re").hidden=false;
- 			document.getElementById("header_showUserName").hidden=true;
+ 			document.getElementById("header_log_re").style.display="block";
+ 			document.getElementById("header_showUserName").style.display="none";
  		}
  	}
 //当前页面高亮
@@ -51,13 +52,13 @@ function highlightPage() {
 //控制iframe的显示与关闭
 function onShowIframe (showHref) {
 				document.getElementById("myiframe").src=""+showHref;								       
-				document.getElementById("content_iframe").hidden=false;//iframe容器
-				document.getElementById("overlay_mask").hidden=false;//遮罩层
+				document.getElementById("content_iframe").style.display="block";//iframe容器
+				document.getElementById("overlay_mask").style.display="block";//遮罩层
 				
  	    }
 function closeIframe () {
-				document.getElementById("content_iframe").hidden=true;				
-				document.getElementById("overlay_mask").hidden=true;
+				document.getElementById("content_iframe").style.display="none";				
+				document.getElementById("overlay_mask").style.display="none";
 		}
  addLoadEvent(aaa);
 </script>

@@ -8,35 +8,36 @@
  				<li><a href="test!test?id=1">二手车市</a></li>
  				<li class="hot_ico" onclick="onShowIframe('complaint_step1.jsp');return false;"><a href>我要吐槽</a></li>
  				<li><a href="report_add.jsp">投&nbsp;&nbsp;稿</a></li>
-				
-					<ul id="header_function">
-						<li>
-						<form action="" method="post" id="global_Research">		
-						  <input type="search" value="搜索您关心的"/>
-						  <button type="submit" class="dashButtons"><img src="../images/img/research.png"/></button>
-					    </form>
-						</li>
-						<li id="header_log_re" hidden="hidden">						
-					       <a id="header_log_re" onclick="onShowIframe('user_login.jsp');">登录&nbsp;|&nbsp;注册</a>						    
-						</li>
-						<li id="header_showUserName">						
-						    <a href="" ><span id="UserName"> </span>&nbsp;|&nbsp;你好</a>				    
-					        <ul id="header_logout" hidden="hidden">
+ 			
+				<li id="header_function">						
+				    <form action="" method="post" id="global_Research">		
+						<input type="search" value="搜索您关心的"/>
+						<button type="submit" class="dashButtons">
+							<img src="../images/img/research.png"/>
+						</button>
+					</form>	
+					<div id="header_log_re">						
+					    <a onclick="onShowIframe('user_login.jsp');">登录&nbsp;|&nbsp;注册</a>    
+					</div>
+					<div id="header_showUserName">						
+						<a href="" ><span id="UserName"> </span>&nbsp;|&nbsp;你好</a>				    
+					        <ul id="header_logout" >
 					           <li><a href="user_center.jsp">个人中心</a></li>
 						       <li><a href="userOperate!logout">退出</a></li>
 					        </ul>
-						</li>
-					</ul>
+					</div>
+				</li>
+			</ul>		
 				
-			</ul>
+			
 		</div>
-		<div id="content_content_iframe " style="position: absolute;width: 100%;top: 200px;">
-		<div id="content_iframe" hidden="hidden" class="view_complainBorder">
+		<div id="content_content_iframe " style="position: absolute;width: 100%; top:200px; ">
+		<div id="content_iframe" class="view_complainBorder">
 			<button id="closeBtn" onclick="closeIframe();">X</button>
 			<iframe src="" name="myiframe" id="myiframe" scrolling="no"></iframe>
 		</div>
 		</div>
-		<div id="overlay_mask" hidden="hidden"></div>
+		<div id="overlay_mask" ></div>
 		<div id="follwUs">			
 			<h3 class="center"><b>关注车曝光</b></h3>
 			<h3 class="center"><b>掌握一手资讯</b></h3>
