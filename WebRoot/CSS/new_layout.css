@@ -1,7 +1,6 @@
 @charset "utf-8";
 /*通用*/
-
-*[hidden] { display: none; }
+*[hidden] {display: none;}
 .global_content {
 	width: 1040px;
 	margin: 0 auto;
@@ -12,7 +11,6 @@ img:hover {border: none;}
 * {
 	margin: 0;
 	padding: 0;
-	position: relative;
 }
 body {
 	font-family: "microsoft yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
@@ -46,8 +44,9 @@ iframe {
 	height: 100%;
 	z-index: 1002;
 	position: relative;
-}
-#content_content_iframe {} #content_iframe {
+} 
+#content_iframe {
+	display: none;
 	width: 620px;
 	height: 650px;
 	z-index: 1001;
@@ -119,7 +118,7 @@ iframe {
 	width: 1040px;
 	position: fixed;
 	margin: 0 auto;
-	z-index: 100;
+	z-index: 9999;
 	background-color: #FFFFFF;
 	-moz-box-shadow: 0px 2px 2px #888888;
 	/* 老的 Firefox */
@@ -140,16 +139,19 @@ iframe {
 	width: 290px;
 	height: 90px;
 }
+#header_nav>li:last-child {
+	width: 140px;
+	font-size: 14px;
+	line-height: normal;
+	margin-right: 0;
+}
 #header_nav>li a:hover {
 	border-bottom: 4px solid #B40000;
 }
 #header_function {
-	float: right;
-	line-height: 43px;
-}
-#header_function>li {
 	width: 140px;
-	text-align: center;
+	height: 86px;
+
 }
 #header_function a:hover {
 	border-bottom: 4px solid #B40000;
@@ -157,7 +159,7 @@ iframe {
 #global_Research {
 	background-color: #EACD2E;
 	line-height: normal;
-	height: 25px;
+	width: 138px;
 	overflow: hidden;
 	margin: 9px 0;
 	border-radius: 4px;
@@ -166,6 +168,7 @@ iframe {
 #global_Research input {
 	float: left;
 	height: 25px;
+	line-height: 25px;
 	width: 113px;
 	border: none;
 }
@@ -174,6 +177,15 @@ iframe {
 	height: 25px;
 	width: 25px;
 	border: none;
+}
+#header_log_re {
+	text-align: center;
+	line-height: 43px;
+}
+#header_showUserName {
+	display: none;
+	font-size: 14px;
+	line-height: 43px;
 }
 #header_showUserName:hover ul {
 	display: block;
@@ -189,10 +201,11 @@ iframe {
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 1000;
+	z-index: 900;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(111, 111, 111, 0.2);
+	display: none;
 }
 .hot_ico {
 	background-image: url(../images/img/hot32.png);
@@ -223,6 +236,7 @@ iframe {
 #follwUs {
 	position: fixed;
 	top: 190px;
+	left: 0;
 	width: 138px;
 	background-color: #F9F9F9;
 	overflow: hidden;
@@ -464,6 +478,7 @@ a.showAll {
 	display: block;
 	margin: 0 10px;
 	line-height: 30px;
+	margin-right: 0; 
 }
 #index_quickBtns {
 	margin-top: 10px;
@@ -473,11 +488,11 @@ a.showAll {
 	font-weight: bold;
 	line-height: 30px;
 }
-#index_quickBtns a {
+#index_quickBtns li {
 	float: left;
 	width: 33.3%;
 }
-#index_quickBtns a li {
+#index_quickBtns li a {
 	width: 90%;
 	margin: 5px 5%;
 	height: 39px;
@@ -564,12 +579,12 @@ a.showAll {
 	background-color: #F6F6F6;
 	margin-right: 10px;
 }
-#view_left ul a li {
+#view_left ul li {
 	padding-left: 50px;
 	line-height: 20px;
 	margin: 10px 0;
 }
-#view_left ul a:hover {
+#view_left ul li a:hover {
 	color: #444444;
 	background-color: #CCCCCC;
 }
@@ -609,7 +624,7 @@ a.showAll {
 	height: 40px;
 	background-color: #FFFFFF;
 }
-#view_mainChooseTime ul a li {
+#view_mainChooseTime ul li a {
 	float: left;
 	margin-left: 10px;
 	line-height: 38px;
@@ -650,6 +665,7 @@ a.showAll {
 	margin-right: 10px;
 	margin-bottom: 5px;
 	float: left;
+	display: block;
 	border-radius: 4px;
 	font-size: 12px;
 	color: #F9F9F9;
@@ -727,7 +743,8 @@ a.showAll {
 	border-radius: 4px;
 }
 #view_researchComplains input {
-	height: 100%;
+	height: 38px;
+	line-height: 38px;
 	width: 80%;
 	float: left;
 	border: none;
@@ -759,11 +776,17 @@ a.showAll {
 	background-color: #FFFFFF;
 	overflow: hidden;
 }
-#view_rightNav ul li a {
+#view_rightNav ul li {
 	color: inherit;
 	font-size: 14px;
+	height:20px;
 	float: left;
 	margin: 5px;
+}
+#view_rightNav ul li a {
+	height:20px;
+	overflow: hidden;
+	display: block;
 }
 #view_rightNav ul li a:hover {
 	background-color: #B40000;
@@ -831,6 +854,7 @@ a.showAll {
 	float: left;
 	padding: 0 20px;
 	line-height: 36px;
+	position: relative;
 }
 .view_rankDetailNav ul li:hover {
 	border-bottom: 2px solid #B40000;
@@ -992,7 +1016,7 @@ a.showAll {
 	width: 100%;
 }
 .color_yellow {
-	height: 500px;
+	height: 550px;
 	width: 100%;
 }
 .login_content {
@@ -1130,10 +1154,10 @@ a.showAll {
 }
 .instruction {
 	position: absolute;
-	top: 30px;
+	top: 36px;
 	right: 0;
 	width: 300px;
-	height: 150px;
+	height: 130px;
 }
 .carcolor {
 	width: 30px;

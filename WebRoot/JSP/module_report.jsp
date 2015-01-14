@@ -14,8 +14,8 @@ var newsPreJson2=<%= msgReport1%>;
 function addnewsPre(objID,mjson){
     var aul=document.getElementById(objID);
     var lis=aul.getElementsByTagName("li");
-    for (var i=0;i<lis.length;i++){
-    if(null != mjson[i]){
+    for (var i=0;i<lis.length-1;i++){
+    if (mjson[i]){
     var atime = mjson[i].time.split("-");
     var mtime = atime[1]+"-"+atime[2];
 
