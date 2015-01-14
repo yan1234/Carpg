@@ -9,35 +9,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>登录页面</title>
+    <title>注册页面</title>
   </head>
   
   <body>
   	<c:if test="${user==null}">
-	<form action="userinfo!checkLogin.action" method="post">
-		<table cellpadding="1" cellspacing="1" align="center" width="198px">
+	<form action="userinfo!checkRegister.action" method="post">
+		<table cellpadding="1" cellspacing="1" align="center" width="230px">
 			<tr>
 				<td colspan="2">
-					账号：<input type="text" name="username" style="width:120px;"/>
+					账　　号：<input type="text" name="userid" style="width:120px;"/>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					密码：<input type="password" name="userpwd" style="width:120px;" />
+					密　　码：<input type="password" name="userpwd1" style="width:120px;" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					确认密码：<input type="password" name="userpwd2" style="width:120px;" />
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="submit" value="登录"/>
+					<input type="submit" value="提交"/>
 					<input type="reset" value="重置" style="margin-left: 10px;"/>
-					<a href="userinfo!checkRegister.action" style="margin-left: 15px;">未注册？</a>
+					<a href="userinfo!checkLogin.action" style="margin-left: 15px;">返回登录</a>
 				</td>
 			</tr>
 		</table>
 	</form>
 	</c:if>
 	<c:if test="${user!=null}">
-		你好，<a href="" >${user.username }</a><hr/>
+		你好，<a href="" >${user.userid }</a><hr/>
 		<a href="userinfo!logout.action">安全退出</a>
 	</c:if>
   </body>

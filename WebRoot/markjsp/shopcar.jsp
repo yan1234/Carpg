@@ -11,14 +11,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     <title>选择车辆首页</title>
 	<link rel="stylesheet" type="text/css" href="mycss/css.css">
-	<link rel="stylesheet" href="CSS/new_layout.css" />
-	<script src="JS/util.js" type="text/javascript" charset="utf-8"></script>
   </head>
   
   <body>
 	<div id="dbody">
-		<div>
-		<jsp:include page="header.jsp" flush="true" ></jsp:include>
+		<div id="dtop"></div>
+		<div id="dnavi">
+			<ul>
+				<li><a href="">首页</a></li>
+				<li><a href="">车型</a></li>
+				<li><a href="">客户中心</a></li>
+				<li><a href="">我要吐槽</a></li>
+				<li><a href="">建言纳谏</a></li>
+			</ul>
 		</div>
 		<div id="dcontent">
 			<div id="dleft">

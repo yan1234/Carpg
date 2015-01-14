@@ -13,9 +13,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	var i=2;
     	function sentTo(){
 			var obj=document.getElementById("s");
-			obj.innerHTML="页面将在"+i+"秒后跳转到主页面....<a href='JSP/login.jsp'>（点此直接进入）</a>";
+			obj.innerHTML="页面将在"+i+"秒后跳转到主页面....<a href='<%=basePath %>login.jsp'>（点此直接进入）</a>";
 			if(i--==0){
-				window.location="JSP/login.jsp";
+				window.location="login.jsp";
 			}
     	}
     	window.setInterval(sentTo,1000);
@@ -23,6 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <span id="s" style="margin-left: 200px;">页面将在3秒后跳转到主页面....<a href="JSP/login.jsp">（点此直接进入）</a></span>
+    <span id="s" style="margin-left: 200px;">页面将在3秒后跳转到主页面....<a href="<%=basePath %>login.jsp">（点此直接进入）</a></span>
   </body>
 </html>
