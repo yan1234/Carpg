@@ -36,6 +36,7 @@ public class CarinfoAction implements ModelDriven<Carinfo>,SessionAware{
 		//System.out.println("len-->"+len);
 		totalPage=(len%6==0)?(len/6):(len/6)+1; //共几页
 		System.out.println("totalPage-->"+totalPage);
+		System.out.println("test-->"+lstCarinfo.get(0).getCid()+"  "+lstCarinfo.get(0).getCconfig());
 		return SUCC;
 	}
 	//根据id查找详单
@@ -124,6 +125,9 @@ public class CarinfoAction implements ModelDriven<Carinfo>,SessionAware{
 	}
 	public void setSession(Map<String, Object> arg0) {
 		this.session=arg0;
+	}
+	public void setCarinfo(Carinfo carinfo) {
+		this.carinfo = carinfo;
 	}
 	
 }

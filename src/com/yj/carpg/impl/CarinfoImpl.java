@@ -22,17 +22,18 @@ public class CarinfoImpl implements CarinfoDao{
 	public List<Carinfo> pagingCarinfo(int pageIndex) {
 		conn=DBHelper.getConn();
 		lstCarinfo=new ArrayList<Carinfo>();
-		mySQL="SELECT * FROM (SELECT ROWNUM R,C.* FROM (SELECT * FROM CARINFO ORDER BY CID) C WHERE ROWNUM <=?) WHERE R>=?";
+		mySQL="select * from (select (@rowNum:=@rowNum+1) as row, cId as id from carinfo,"
+			+"(select (@rowNum:=0)) as B order by cId desc) as A, carinfo where id = cId && row >? limit ?;";
 		try {
 			ps=conn.prepareStatement(mySQL);
-			ps.setInt(1, pageIndex*6);
-			ps.setInt(2, (pageIndex-1)*6+1);
+			ps.setInt(1, (pageIndex-1)*6);         //设置取出的行号位置
+			ps.setInt(2, 6);       //表示限制取6条记录
 			rs=ps.executeQuery();
 			while(rs.next()){  //第一条是行号！不取行号！
 				Carinfo car=new Carinfo();
-				car.setCid(rs.getInt("cId"));
+				car.setCid(rs.getInt("cId"));    //通过排列的列号取得id
 				System.out.println("cid-->"+rs.getInt("cId"));
-				car.setCsign(rs.getString("csign"));
+				car.setCsign(rs.getString("cSign"));
 				car.setCseries(rs.getString("cseries"));
 				car.setCstyle(rs.getString("cstyle"));
 				car.setCcolor(rs.getString("ccolor"));
@@ -80,7 +81,7 @@ public class CarinfoImpl implements CarinfoDao{
 
 	public Carinfo findById(Carinfo carinfo) {
 		conn=DBHelper.getConn();
-		mySQL="SELECT * FROM CARINFO WHERE CID=?";
+		mySQL="SELECT * FROM carinfo WHERE cId=?";
 		Carinfo car=null;
 		try {
 			ps=conn.prepareStatement(mySQL);
@@ -89,7 +90,7 @@ public class CarinfoImpl implements CarinfoDao{
 			if(rs.next()){  //有第一条
 				car=new Carinfo();
 				car.setCid(rs.getInt("cId"));
-				car.setCsign(rs.getString("csign"));
+				car.setCsign(rs.getString("cSign"));
 				car.setCseries(rs.getString("cseries"));
 				car.setCstyle(rs.getString("cstyle"));
 				car.setCcolor(rs.getString("ccolor"));
@@ -137,14 +138,14 @@ public class CarinfoImpl implements CarinfoDao{
 	public List<Carinfo> findAll() {
 		conn=DBHelper.getConn();
 		lstCarinfo=new ArrayList<Carinfo>();
-		mySQL="SELECT * FROM CARINFO";
+		mySQL="SELECT * FROM carinfo";
 		try {
 			ps=conn.prepareStatement(mySQL);
 			rs=ps.executeQuery();
 			while(rs.next()){  
 				Carinfo car=new Carinfo();
 				car.setCid(rs.getInt("cId"));
-				car.setCsign(rs.getString("csign"));
+				car.setCsign(rs.getString("cSign"));
 				car.setCseries(rs.getString("cseries"));
 				car.setCstyle(rs.getString("cstyle"));
 				car.setCcolor(rs.getString("ccolor"));
@@ -191,7 +192,7 @@ public class CarinfoImpl implements CarinfoDao{
 
 	public boolean saleCar(Carinfo carinfo) {
 		conn=DBHelper.getConn();
-		mySQL="INSERT INTO CARINFO VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		mySQL="INSERT INTO carinfo VALUE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			ps=conn.prepareStatement(mySQL);
 			ps.setInt(1, carinfo.getCid());

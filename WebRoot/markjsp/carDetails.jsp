@@ -1,27 +1,39 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.yj.carpg.dto.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%
-	String str = java.net.URLEncoder.encode("艳玲", "utf-8");
-	String code = java.net.URLEncoder.encode(str);
+<% 
+Carinfo msg = (Carinfo)request.getAttribute("carinfo");
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
     <title>选择车辆首页</title>
 	<link rel="stylesheet" type="text/css" href="mycss/css.css">
-	<link rel="stylesheet" href="CSS/new_layout.css" />
-	<script src="JS/util.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var test = '<%= msg.getCaccident()%>';
+		alert(test);
+		function send(){
+			
+			}
+	</script>
   </head>
   
   <body>
 	<div id="dbody">
-		<div>
-		<jsp:include page="header.jsp" flush="true" ></jsp:include>
+		<div id="dtop"></div>
+		<div id="dnavi">
+			<ul>
+				<li><a href="">首页</a></li>
+				<li><a href="">车型</a></li>
+				<li><a href="">客户中心</a></li>
+				<li><a href="">我要吐槽</a></li>
+				<li><a href="">建言纳谏</a></li>
+			</ul>
 		</div>
 		<div id="dcontent">
 			<div id="cardetailleft">

@@ -1,5 +1,14 @@
-#Mon Jan 12 16:11:52 CST 2015
+#Tue Jan 13 15:59:01 CST 2015
 eclipse.preferences.version=1
 encoding//WebRoot/HTML/complain_notice.html=UTF-8
 encoding//src/com/carpg/dto/Userinfo.java=UTF-8
+encoding//src/com/yj/carpg/controller=UTF-8
+encoding//src/com/yj/carpg/dao=UTF-8
+encoding//src/com/yj/carpg/dto=UTF-8
+encoding//src/com/yj/carpg/dto/Carinfo.java=UTF-8
+encoding//src/com/yj/carpg/impl=UTF-8
+encoding//src/com/yj/carpg/impl/CarinfoImpl.java=UTF-8
+encoding//src/com/yj/carpg/test=UTF-8
+encoding//src/com/yj/carpg/util=UTF-8
+encoding//src/com/yj/carpg/util/MyFilter.java=UTF-8
 encoding/WebRoot=UTF-8
