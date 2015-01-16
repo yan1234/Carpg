@@ -3,6 +3,7 @@
 <%
 
 	String param = request.getParameter("param");
+	String msg = (String)request.getAttribute("msg");
 	String deString = "";
 	if (param != null && param!= ""){
 		deString = URLDecoder.decode(URLDecoder.decode(param, "utf-8"));
