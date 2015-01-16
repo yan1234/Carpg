@@ -4,25 +4,94 @@ new_element.setAttribute("type","text/javascript");
 new_element.setAttribute("src","../JS/external/json2.js");
 document.getElementsByTagName("head").item(0).appendChild(new_element);
 
-function jakeChart () {
-	var bjson=[
-	{"name":"一汽大众","nub":501},
-	{"name":"上海通用雪佛兰","nub":290},
-	{"name":"上海大众","nub":280},
-	{"name":"长安福特","nub":260},
-	{"name":"上海通用福特","nub":230},
-	{"name":"东风日产","nub":210},
-	{"name":"东风悦达起亚","nub":160},
-	{"name":"长城","nub":150},
-	{"name":"东风雪铁龙","nub":140},
-	{"name":"东风标致","nub":140},
-	{"name":"北京现代","nub":140},
-	{"name":"奇瑞汽车","nub":130},
-	];
-	showChartB(bjson);
+
+
+//设置下一次的排行类型
+function setType(){	
+	XTitle=decodeURI(decodeURI(XTitle));
+    switch(chartType)
+    {
+    	case "brand_year_count" :
+	        document.getElementById("rankTitle").innerHTML=XTitle+"年代一览";
+    		chartType="year_brand_count";    		
+    		break;
+    	case "year_brand_count" :
+    		document.getElementById("rankTitle").innerHTML=XTitle+"品牌一览";
+    		chartType="brand_cartype_count";
+    		break;
+    	case "brand_cartype_count" :
+    		document.getElementById("rankTitle").innerHTML=XTitle+"车型一览";
+    		chartType="showComplain";
+    		break;
+    	case "problem_year_count" :
+    		document.getElementById("rankTitle").innerHTML=XTitle+"年代一览";
+    		chartType="year_problem_count" ;
+    		break;
+    	case "year_problem_count" :
+    		document.getElementById("rankTitle").innerHTML=XTitle+"缺陷一览";
+    		chartType="problem_cartype_count";
+    		break;
+    	case "problem_cartype_count" :
+    		document.getElementById("rankTitle").innerHTML=XTitle+"车型一览";
+    		chartType="showComplain";
+    		break;
+    }
 }
-function jakeChartProblem () {
-	var bjson=[
+//写DOM，展示排行
+function showChart (bjson) {
+    //百分数转换的方法
+	Number.prototype.toPercent = function(n){n = n || 2;return ( Math.round( this * Math.pow( 10, n + 2 ) ) / Math.pow( 10, n ) ).toFixed( n ) + '%';}
+	//设置父容器ul的宽度
+	var rankBar=document.getElementById("rankBar");
+	rankBar.style.width=60*bjson.length+"px";
+	//吐槽的总数
+	var sum=0;
+	for (var i = 0; i < bjson.length; i++) {
+	if(bjson[i]!= null){
+		sum+=bjson[i].nub;}		
+	}
+	for (var i = 0; i < bjson.length; i++) {
+	if(bjson[i]!= null){
+		var a=document.createElement("li");
+		//柱状图文字
+		a.innerHTML=""+bjson[i].name;
+		a.Alt=""+bjson[i].nub;
+		var b=bjson[i].nub/sum;//0.3是增高垫
+		//柱状图高度
+		a.style.backgroundPositionY=""+b.toPercent();
+		//添加点击事件
+		a.onclick=function(){
+		var str="statisticOperate!getRank?type="+chartType+"&param="+encodeURI(encodeURI(this.innerText));
+		window.location.href=str;
+		}
+		
+		rankBar.appendChild(a);}
+	}
+}
+
+
+function loadrightrank (mtarget,mJson) {
+    	//将小数转换为百分数
+    	Number.prototype.toPercent = function(n){n = n || 2;return ( Math.round( this * Math.pow( 10, n + 2 ) ) / Math.pow( 10, n ) ).toFixed( n ) + '%';}
+    	var sum=0;
+    	for (var i = 0; i < mJson.length; i++) {   	
+    		sum+= mJson[i].nub;		
+    	}
+    	for (var i = 0; i < mJson.length; i++) {
+    		var n=i+1;
+    		var mtitle=""+mtarget+""+n;
+    		var mbar=""+mtarget+"Bar"+n;
+    	    var atitle= document.getElementById(mtitle);
+    	    atitle.innerText=mJson[i].name;
+    	    atitle.parentNode.href += encodeURI(encodeURI(mJson[i].name));
+    	    var b=mJson[i].nub/sum;
+    	    document.getElementById(mbar).style.width=""+b.toPercent();
+    		
+    	}
+    }
+    
+    
+	jakechartJson=[
 	{"name":"汽车悬架","nub":701},
 	{"name":"汽车外部配件","nub":180},
 	{"name":"汽车内部配件","nub":100},
@@ -43,27 +112,3 @@ function jakeChartProblem () {
 	{"name":"车轮/轮毂","nub":130},
 	{"name":"车窗/挡风玻璃","nub":130},
 	];
-	showChartB(bjson);
-}
-function showChartB (bjson) {
-	Number.prototype.toPercent = function(n){n = n || 2;return ( Math.round( this * Math.pow( 10, n + 2 ) ) / Math.pow( 10, n ) ).toFixed( n ) + '%';}
-	var rankBar=document.getElementById("rankBar");
-	rankBar.style.width=60*bjson.length+"px";
-	var sum=0;
-	for (var i = 0; i < bjson.length; i++) {
-	if(bjson[i]!= null){
-		sum+=bjson[i].nub;}		
-	}
-	for (var i = 0; i < bjson.length; i++) {
-	if(bjson[i]!= null){
-		var a=document.createElement("li");
-		a.innerHTML=""+bjson[i].name;
-		a.Alt=""+bjson[i].nub;
-		var b=bjson[i].nub/sum+0.3;
-		a.style.backgroundPositionY=""+b.toPercent();
-		rankBar.appendChild(a);}
-	}
-}
-	function setCar(value){
-	document.getElementById("rankTitle").innerHTML=value+"问题榜";
-    }

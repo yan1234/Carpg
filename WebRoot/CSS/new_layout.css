@@ -369,17 +369,18 @@ iframe {
 	float: left;
 	margin: 0 10px;
 }
-ul.problemRank_text {
+.problemRank_text {
 	width: 140px;
 	height: 106px;
 	text-align: center;
 	float: left;
 }
-ul.problemRank_text li a h5,
-h6 {
-	font-weight: bold;
+.problemRank_text li{
+	height: 23px;
+	line-height: 23px;
+	margin-top: 10px;
 }
-ul.problemRank_bar {
+.problemRank_bar {
 	width: 190px;
 	float: right;
 	background-color: #CCCCCC;

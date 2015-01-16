@@ -54,14 +54,14 @@
                 			<option value="default">--选择您关心的车--</option>
                 		</select>
                 		<select id="serial" hidden="true"></select>
-                		<form method="post" action="statisticOperate!getRank" id="car_form" style="display: inline;">
+                		<form method="post" action="statisticOperate!getRank" id="car_form" style="display: none;">
                 		<input type="text" id="param" name="param" hidden="true" />
-                		<input type="text" name="type" hidden="true" />
+                		<input type="text" id="type" name="type" hidden="true" value="brand_year_count"/>
                 		<input type="submit" id = "go" value="GO" onClick="return postCar(this);"/>
                 		</form>
-                		<script type="text/javascript">
-							//执行品牌加载事件
-							showBrand1();
+  <script type="text/javascript">
+		//执行品牌加载事件
+		showBrand1();
 		function postCar(obj){
 	  							//表示选择车型进行提交
 	  	if (obj.tagName.toString() == "INPUT"){
@@ -81,7 +81,7 @@
 	document.getElementById("param").value = param;
 	document.getElementById("car_form").submit();
     }
-						</script>
+	</script>
                 	
                 	</li>
 			</ul>
@@ -112,7 +112,13 @@
                 		<h5>查看全部 》</h5>
                 	</a>
 			</ul>
-			
+			<script type="text/javascript">
+			var lis = document.getElementById("index_hotProblem").getElementsByTagName("li");
+			for (var i=0;i<lis.length;i++){
+			var aa = lis[i].firstChild;
+			aa.href="statisticOperate!getRank?type=problem_year_count&param="+encodeURI(encodeURI(aa.innerText));			
+			}
+			</script>
 			
 			<div id="index_carMarket">
 				<h3>最新车市&nbsp;》

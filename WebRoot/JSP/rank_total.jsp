@@ -2,12 +2,13 @@
 <%@ page import="java.net.URLDecoder" %>
 <%
 
-	String param = request.getParameter("param");
+	String param = (String)request.getAttribute("param");
+	String type=(String)request.getAttribute("type");
 	String msg = (String)request.getAttribute("msg");
-	String deString = "";
-	if (param != null && param!= ""){
-		deString = URLDecoder.decode(URLDecoder.decode(param, "utf-8"));
-	}
+	//String deString = "";
+	//if (param != null && param!= ""){
+	//	deString = URLDecoder.decode(URLDecoder.decode(param, "utf-8"));
+	//}
 	
 %>
 
@@ -25,13 +26,17 @@
         addLoadEvent(setmeta);//设置meta内容
 	    </script>
 <script type="text/javascript">
-
-	function rankload(){
-	var carTitle='<%= deString %>';
-	setCar(carTitle);
-	jakeChartProblem();
+var chartJson=<%= msg %>;//接受数据
+var chartType='<%= type %>';//接收排行类型
+var XTitle='<%= param %>';//param 标题
+	
+function rankload(){
+	//设置排行标题和下次点击的type
+	setType();
+	//创建排行榜
+	showChart(chartJson);
 	}
-	addLoadEvent(rankload);	
+addLoadEvent(rankload);	
 </script>
 	</head>
 	<body>
