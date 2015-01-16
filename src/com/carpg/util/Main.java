@@ -1,17 +1,16 @@
 package com.carpg.util;
 
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.Random;
 
-import javax.mail.MessagingException;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+
+
+import com.carpg.dto.Complaint;
+import com.carpg.impl.ComplaintImpl;
+
+
 
 public class Main {
 	static int id;
@@ -19,34 +18,60 @@ public class Main {
 	/**
 	 * @param args
 	 */
+	
+	public static String[] car = {"奥迪~A3","奥迪~A4L","奥迪~A6L","奥迪~Q3","奥迪~Q5","奥迪~A1","奥迪~A3（进口）","奥迪~A4 allroad","奥迪~A5","奥迪~A6","奥迪~A7","奥迪~A8L","奥迪~Q3（进口）","奥迪~Q5（进口）","奥迪~A6 allroad","奥迪~Q7","奥迪~TT","奥迪~R8","奥迪~S1","奥迪~S3","奥迪~S5","奥迪~S6","奥迪~S7","奥迪~S8","奥迪~SQ5","奥迪~TTS","奥迪~RS 3","奥迪~RS 5","奥迪~RS 7","奥迪~RS Q3","大众~Polo","大众~Cross Polo","大众~桑塔纳","大众~朗行","大众~朗境","大众~朗逸","大众~凌渡","大众~帕萨特","大众~途观","大众~途安","大众~捷达","大众~宝来","大众~高尔夫","大众~速腾","大众~迈腾","大众~CC","大众~UP","大众~甲壳虫","大众~高尔夫（进口）","大众~CC（进口）","大众~迈腾（进口）","大众~辉腾","大众~Taigun","大众~Tiguan","大众~途锐","大众~夏朗","大众~迈特威","大众~凯路威","大众~尚酷","大众~EOS","大众~XL1","大众~Amarok","宝马~3系","宝马~5系","宝马~X1","宝马~1系","宝马~2系","宝马~3系GT","宝马~3系（进口）","宝马~4系","宝马~5系GT","宝马~5系（进口）","宝马~6系","宝马~7系","宝马~X3","宝马~X4","宝马~X5","宝马~X6","宝马~Z4","宝马~i3","宝马~i8","宝马~M3","宝马~M4","宝马~M5","宝马~M6","宝马~X5 M","宝马~X6 M",
+			"奔驰~C级","奔驰~E级","奔驰~GLK级","奔驰~凌特","奔驰~威霆","奔驰~唯雅诺","奔驰~A级","奔驰~B级","奔驰~CLA级","奔驰~CLS级","奔驰~C级（进口）","奔驰~E级（进口）","奔驰~GLA级","奔驰~GL级","奔驰~G级","奔驰~M级","奔驰~乌尼莫克","奔驰~R级","奔驰~SLK级","奔驰~SL级","奔驰~S级","奔驰~V级","奔驰~凌特（进口）","奔驰~A级 AMG","奔驰~CLA级 AMG","奔驰~CLS级 AMG","奔驰~C级 AMG","奔驰~GLA级 AMG","奔驰~GL级 AMG","奔驰~G级 AMG","奔驰~ML级 AMG","奔驰~SLS级 AMG","奔驰~SL级 AMG","奔驰~S级 AMG","奔驰~AMG GT","斯柯达~晶锐","斯柯达~昕动","斯柯达~昕锐","斯柯达~明锐","斯柯达~速派","斯柯达~野帝","斯柯达~速尊","斯柯达~Yeti","福特~嘉年华","福特~福睿斯","福特~福克斯","福特~致胜","福特~蒙迪欧","福特~翼搏","福特~翼虎","福特~麦柯斯","福特~经典全顺","福特~新世代全顺","福特~嘉年华ST","福特~福克斯ST","福特~锐界","福特~探险者","福特~征服者","福特~F-150","福特~F-650","福特~野马","别克~凯越","别克~英朗GT","别克~英朗XT","别克~君威","别克~君越","别克~林荫大道","别克~昂科拉","别克~昂科威","别克~GL8","别克~昂科雷","雪佛兰~赛欧","雪佛兰~爱唯欧","雪佛兰~科鲁兹","雪佛兰~景程","雪佛兰~迈锐宝","雪佛兰~创酷","雪佛兰~科帕奇","雪佛兰~沃蓝达",
+			"雪佛兰~科迈罗","雪佛兰~科尔维特","雪佛兰~Silverado ","雪佛兰~SS","雪铁龙~爱丽舍","雪铁龙~世嘉","雪铁龙~C4L","雪铁龙~C5","雪铁龙~C3-XR","雪铁龙~C3毕加索","雪铁龙~C4 Aircross","雪铁龙~大C4毕加索","标致~301","标致~307","标致~308","标致~408","标致~508","标致~2008","标致~3008","标致~207CC","标致~308CC","标致~308SW","标致~4008","标致~5008","标致~RCZ","本田~思域","本田~思铂睿","本田~XR-V","本田~CR-V","本田~杰德","本田~艾力绅","本田~飞度","本田~锋范","本田~凌派","本田~雅阁","本田~歌诗图","本田~缤智","本田~奥德赛","本田~飞度（进口）","本田~CR-Z","本田~Insight","本田~HR-V","丰田~威驰","丰田~花冠EX","丰田~卡罗拉","丰田~普锐斯","丰田~锐志","丰田~皇冠","丰田~RAV4","丰田~普拉多","丰田~兰德酷路泽","丰田~柯斯达","丰田~雅力士","丰田~致炫","丰田~雷凌","丰田~凯美瑞","丰田~汉兰达","丰田~逸致","丰田~威飒","丰田~FJ酷路泽","丰田~普拉多（进口）","丰田~红杉","丰田~坦途","丰田~普瑞维亚","丰田~Sienna","丰田~埃尔法","丰田~杰路驰","丰田~86","丰田~Avalon","丰田~Aygo","丰田~HIACE","丰田~Tacoma","日产~玛驰","日产~骊威","日产~阳光","日产~骐达","日产~轩逸","日产~天籁","日产~逍客","日产~奇骏","日产~楼兰","日产~帕拉丁",
+			"日产~NV200","日产~D22","日产~Pulsar ","日产~聆风","日产~途乐","日产~贵士","日产~370Z","日产~GT-R","日产~碧莲","马自达~马自达2","马自达~马自达3","马自达~马自达3星骋","马自达~马自达3 Axela 昂克赛拉","马自达~CX-5","马自达~睿翼","马自达~马自达6","马自达~马自达6 Atenza 阿特兹","马自达~CX-7","马自达~马自达8","马自达~马自达3（进口）","马自达~ATENZA","马自达~马自达5","马自达~CX-5（进口）","马自达~CX-7（进口）","马自达~CX-9","马自达~MX-5","铃木~爱迪尔A+","铃木~北斗星","铃木~利亚纳","铃木~派喜","铃木~浪迪","铃木~奥拓","铃木~雨燕","铃木~羚羊","铃木~天语尚悦","铃木~天语SX4","铃木~启悦","铃木~锋驭","铃木~速翼特","铃木~凯泽西","铃木~吉姆尼","铃木~超级维特拉","起亚~RIO锐欧","起亚~K2","起亚~秀尔","起亚~赛拉图欧风","起亚~赛拉图","起亚~福瑞迪","起亚~K3S","起亚~K3","起亚~K4","起亚~K5","起亚~狮跑","起亚~智跑","起亚~K5（进口）","起亚~凯尊","起亚~索兰托","起亚~霸锐","起亚~佳乐","起亚~Grand VQ-R","起亚~速迈","三菱~蓝瑟","三菱~风迪思","三菱~翼神","三菱~戈蓝","三菱~君阁","三菱~ASX劲炫","三菱~帕杰罗·劲畅","三菱~蓝瑟翼豪陆神","三菱~欧蓝德","三菱~帕杰罗·劲畅（进口）","三菱~帕杰罗（进口）","三菱~伊柯丽斯","现代~瑞奕","现代~瑞纳",
+			"现代~悦动","现代~朗动","现代~名图","现代~索纳塔","现代~ix25","现代~ix35","现代~途胜","现代~胜达","现代~飞思","现代~索纳塔（进口）","现代~雅尊","现代~劳恩斯","现代~捷恩斯","现代~雅科仕","现代~格锐","现代~辉翼","现代~劳恩斯-酷派","东风~H30","东风~Cross","东风~S30","东风~A30","东风~A60","东风~AX7","东风~景逸","东风~景逸S50","东风~景逸X3","东风~景逸X5","东风~CM7","东风~菱智","东风~C35","东风~C36","东风~C37","东风~K01","东风~K02","东风~K06","东风~K07","东风~K07 II","东风~K17","东风~V07S","东风~V21","东风~V22","东风~V27","东风~V29","东风~风光","东风~奥丁","东风~俊风","东风~锐骐","东风~帅客","东风~御轩","东风~御风","比亚迪~F0","比亚迪~F3","比亚迪~F3DM","比亚迪~L3","比亚迪~G3","比亚迪~G3R","比亚迪~G5","比亚迪~速锐","比亚迪~秦","比亚迪~F6","比亚迪~G6","比亚迪~思锐","比亚迪~S6","比亚迪~S7","比亚迪~唐","比亚迪~e6","比亚迪~M6","吉利~熊猫","吉利~熊猫CROSS","吉利~SC3","吉利~自由舰","吉利~金刚","吉利~经典版帝豪","吉利~新帝豪","吉利~GC7","吉利~TX4","吉利~海景","吉利~远景","吉利~EC8","吉利~GX7","吉利~SX7","吉利~豪情","长城~C20R","长城~C30","长城~C50","长城~M2","长城~M4","长城~风骏5","长城~风骏6",
+			"长城~V80","奇瑞~QQ","奇瑞~A3","奇瑞~E3","奇瑞~E5","奇瑞~艾瑞泽3","奇瑞~艾瑞泽7","奇瑞~风云2","奇瑞~旗云1","奇瑞~旗云2","奇瑞~旗云3","奇瑞~旗云5","奇瑞~瑞虎3","奇瑞~瑞虎5","宝骏~乐驰","宝骏~610","宝骏~630","宝骏~730","北京汽车~E系列","北京汽车~BJ40","北京汽车~BJ80","奔驰~C级","奔驰~E级","奔驰~GLK级","奔驰~凌特","奔驰~威霆","奔驰~唯雅诺","奔驰~A级","奔驰~B级","奔驰~CLA级","奔驰~CLS级","奔驰~C级（进口）","奔驰~E级（进口）","奔驰~GLA级","奔驰~GL级","奔驰~G级","奔驰~M级","奔驰~乌尼莫克","奔驰~R级","奔驰~SLK级","奔驰~SL级","奔驰~S级","奔驰~V级","奔驰~凌特（进口）","奔驰~A级 AMG","奔驰~CLA级 AMG","奔驰~CLS级 AMG","奔驰~C级 AMG","奔驰~GLA级 AMG","奔驰~GL级 AMG","奔驰~G级 AMG","奔驰~ML级 AMG","奔驰~SLS级 AMG","奔驰~SL级 AMG","奔驰~S级 AMG","奔驰~AMG GT","奔腾~B50","奔腾~B70","奔腾~B90","奔腾~X80","江淮~悦悦","江淮~和悦A13","江淮~和悦A13RS","江淮~和悦A30","江淮~和悦","江淮~瑞风A6","江淮~瑞风S3","江淮~瑞风S5","江淮~瑞风","江淮~瑞风M5","江淮~和悦RS","江淮~星锐","江淮~和悦iEV","众泰~云100","众泰~Z100","众泰~Z200","众泰~Z300","众泰~Z500","众泰~2008","众泰~5008","众泰~T200","众泰~T600","众泰~M300",
+			"众泰~V10","力帆~320","力帆~330","力帆~520","力帆~530","力帆~620","力帆~630","力帆~720","力帆~820","力帆~X50","力帆~X60","力帆~丰顺","力帆~兴顺"};
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//测试模块
-		LinkedHashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
-		map.put("2014", 7000);
-		map.put("2013", 2000);
-		map.put("2012", 1000);
-		map.put("2011", 3000);
-		map.put("2010", 3500);
-		map.put("2009", 2500);
-		Set set = map.entrySet();
-		Iterator iterator = set.iterator();
-		JSONArray array = new JSONArray();
-		//遍历hashMap并载入到数据源(JSONArray)
-		while (iterator.hasNext()){
-			 Map.Entry element = (Map.Entry)iterator.next(); 
-	         String  key = (String)element.getKey(); 
-	         int  value = (Integer)element.getValue();
-	         JSONObject obj = new JSONObject();
-	         obj.put("name", key);
-	         obj.put("nub", value);
-	         array.add(obj);
+		//通过程序自动向数据库写入数据
+		Calendar cal = Calendar.getInstance();
+		System.out.println("start: "+cal.getTimeInMillis());
+		for (int i=0; i < 10000; i++){
+			Complaint c = new Complaint();
+			c = setCom();
+			ComplaintImpl impl = new ComplaintImpl();
+			impl.addComplaint(c);
+			System.out.println("i:  "+i);
 		}
-		System.out.println("map转化为json："+ array.toString());
+		Calendar cal1 = Calendar.getInstance();
+		System.out.println("start: "+cal1.getTimeInMillis());
 
 	}
-	public void setI(){
-		id = 3;
+	public static Complaint setCom(){
+		Complaint com = new Complaint();
+		com.setUser_id(1);
+		com.setUser_name("车曝网友");
+		int count = getRandom(0, 507);
+		String temp = car[count];
+		String[] str = temp.split("~");
+		com.setCar_brand(str[0]);
+		com.setCar_type(str[1]);
+	    //生成抱怨时间的程序
+		String time = getRandom(2013, 2014)+"-"+padding(getRandom(1,12))+"-"+padding(getRandom(1,28))+" "+padding(getRandom(0,23))+":"+padding(getRandom(0,59))+":"+padding(getRandom(0,59));
+		com.setTime(time);
+		com.setStart_time(String.valueOf(getRandom(2009, 2014)));
+		
+		com.setProblem_id(getRandom(1, 19));
+		com.setMileage(getRandom(5000, 20000));
+		return com;
+	}
+	//生成x>=start && x <= end的整数
+	public static int getRandom(int start, int end){
+		Random r = new Random();
+		return start + r.nextInt(end - start +1);
+	}
+	
+	public static String padding(int count){
+		String temp=String.valueOf(count);
+		if (count < 10){
+			temp = "0"+count;
+		}
+		return temp;
 	}
 
 }

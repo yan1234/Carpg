@@ -39,5 +39,15 @@ function setmeta () {
 	//判断是否为移动端，隐藏左侧二维码
 	if (navigator.userAgent.match(/(iphone|ipod|android|ios|windows phone)/i)){
 	document.getElementById("followUs").style.display="none";
+	
 	}
+	
+	//添加百度统计工具js
+	var _hmt = _hmt || [];
+	(function() {
+  		var hm = document.createElement("script");
+ 	    hm.src = "//hm.baidu.com/hm.js?fffcc0e878c108aa211c6e2b0654df23";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+     })();
 }
