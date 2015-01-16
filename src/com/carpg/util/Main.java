@@ -1,6 +1,7 @@
 package com.carpg.util;
 
 
+import java.util.Calendar;
 import java.util.Random;
 
 
@@ -28,12 +29,17 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//通过程序自动向数据库写入数据
+		Calendar cal = Calendar.getInstance();
+		System.out.println("start: "+cal.getTimeInMillis());
 		for (int i=0; i < 10000; i++){
 			Complaint c = new Complaint();
 			c = setCom();
 			ComplaintImpl impl = new ComplaintImpl();
 			impl.addComplaint(c);
+			System.out.println("i:  "+i);
 		}
+		Calendar cal1 = Calendar.getInstance();
+		System.out.println("start: "+cal1.getTimeInMillis());
 
 	}
 	public static Complaint setCom(){

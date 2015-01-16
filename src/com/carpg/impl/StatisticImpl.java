@@ -26,7 +26,7 @@ public class StatisticImpl implements StatisticDao {
 		LinkedHashMap<String, Integer> map = null;
 		
 		if (type.equals(StatisticDao.BRAND_YEAR_COUNT)){ //品牌按年份统计
-			sql = "select start_time, count(*),user_car_id from complaint where car_brand=? group by start_time order by count(*) DESC";
+			sql = "select start_time, count(*),user_car_id from complaint where car_brand=? group by start_time order by start_time DESC";
 			
 		}else if (type.equals(StatisticDao.BRAND_COUNT_YEAR)){ //某一年内各个品牌的状况统计
 			sql = "select car_brand, count(*) from complaint where start_time = ? group by car_brand order by count(*) DESC";
