@@ -76,6 +76,7 @@
 			<result>/index.jsp</result>
 			<result name="index" type="redirect">/index.jsp</result>
 			<result name="rank">rank_total.jsp</result>
+			<result name="view">complaint_view.jsp</result>
 		</action>
 		<action name="index" class = "com.carpg.controller.index">
 			<result name="index" type="redirect">/JSP/module_index.jsp</result>

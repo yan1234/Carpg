@@ -21,7 +21,8 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 	private String msgReport0;
 	private String msgReport1;
 	//统计数据的值
-	private String msgStatistic;
+	private String msgStatistic0;
+	private String msgStatistic1;
 	
 	//首页的请求转发
 	public String execute() throws Exception{
@@ -29,6 +30,10 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 		//将首页动态展示的信息传递给页面前端（session或其他）
 		//得到首页的统计展示数据
 		StatisticAction staAction = new StatisticAction();
+		staAction.index(0);
+		msgStatistic0 = staAction.getMsg();
+		staAction.index(1);
+		msgStatistic1 = staAction.getMsg();	
 		//得到首页的调查报告，汽车召回的数据
 		ReportAction reAction = new ReportAction();
 		//得到后端请求的信息报告的值包括调查报告和信息召回
@@ -40,6 +45,9 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 		//将数据存储在session中
 		request.getSession().setAttribute("msgReport0", msgReport0);
 		request.getSession().setAttribute("msgReport1", msgReport1);
+		
+		request.getSession().setAttribute("msgStatistic0", msgStatistic0);
+		request.getSession().setAttribute("msgStatistic1", msgStatistic1);
 		
 		return "index";
 	}
@@ -63,14 +71,6 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 		this.typeReport = typeReport;
 	}
 
-	public String getMsgStatistic() {
-		return msgStatistic;
-	}
-
-	public void setMsgStatistic(String msgStatistic) {
-		this.msgStatistic = msgStatistic;
-	}
-
 	public String getMsgReport0() {
 		return msgReport0;
 	}
@@ -85,6 +85,22 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 
 	public void setMsgReport1(String msgReport1) {
 		this.msgReport1 = msgReport1;
+	}
+
+	public String getMsgStatistic0() {
+		return msgStatistic0;
+	}
+
+	public void setMsgStatistic0(String msgStatistic0) {
+		this.msgStatistic0 = msgStatistic0;
+	}
+
+	public String getMsgStatistic1() {
+		return msgStatistic1;
+	}
+
+	public void setMsgStatistic1(String msgStatistic1) {
+		this.msgStatistic1 = msgStatistic1;
 	}
 
 
