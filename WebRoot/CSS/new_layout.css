@@ -885,7 +885,7 @@ a.showAll {
 	margin-left: 20px;
 	height: 320px;
 	width: 666px;
-	overflow: auto;
+	overflow-x: auto;
 	background-image: url(../images/img/chartbk.png);
 	border-bottom: 4px solid #FFFFFF;
 	border-left: 4px solid #FFFFFF;
@@ -895,7 +895,7 @@ a.showAll {
 	min-width: 666px;
 }
 .rankBar li {
-	width: 30px;
+	width: 35px;
 	text-align: center;
 	margin: 0 15px;
 	height: 100%;

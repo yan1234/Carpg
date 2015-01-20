@@ -44,19 +44,16 @@ function showChart (bjson) {
 	//设置父容器ul的宽度
 	var rankBar=document.getElementById("rankBar");
 	rankBar.style.width=60*bjson.length+"px";
-	//吐槽的总数
-	var sum=0;
-	for (var i = 0; i < bjson.length; i++) {
-	if(bjson[i]!= null){
-		sum+=bjson[i].nub;}		
-	}
+
 	for (var i = 0; i < bjson.length; i++) {
 	if(bjson[i]!= null){
 		var a=document.createElement("li");
-		//柱状图文字
+		//柱状图文字信息
 		a.innerHTML=""+bjson[i].name;
 		a.Alt=""+bjson[i].nub;
-		var b=bjson[i].nub/sum;//0.3是增高垫
+
+
+		var b=bjson[i].nub/(bjson[0].nub/0.7);
 		//柱状图高度
 		a.style.backgroundPositionY=""+b.toPercent();
 		//添加点击事件
