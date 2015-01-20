@@ -19,6 +19,10 @@ public interface StatisticDao {
 	//根据要查询的语句和传递的参数获得Map<类别，数量>, 并按降序排列
 	public Map<String, Integer> getCountByParam(String sql, String param);
 	
+	//获取首页中的最热问题榜和最热车榜
+	public Map<String, Integer> getIndexProblem();
+	public Map<String, Integer> getIndexCarType();
+	
 	
 	
 	
