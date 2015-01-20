@@ -886,6 +886,7 @@ a.showAll {
 	height: 320px;
 	width: 666px;
 	overflow-x: auto;
+	overflow-y: hidden;
 	background-image: url(../images/img/chartbk.png);
 	border-bottom: 4px solid #FFFFFF;
 	border-left: 4px solid #FFFFFF;

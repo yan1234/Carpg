@@ -58,7 +58,17 @@ function showChart (bjson) {
 		a.style.backgroundPositionY=""+b.toPercent();
 		//添加点击事件
 		a.onclick=function(){
-		var str="statisticOperate!getRank?type="+chartType+"&param="+encodeURI(encodeURI(this.innerText));
+            var str;
+            if(chartType==="showComplain"){
+              var atext=this.innerText;
+              if (atext.indexOf(".")>0)  {
+                atext= atext.split(".")[1]
+              }
+              str="statisticOperate!getRank?type="+toComplaint+"&param="+encodeURI(encodeURI(atext));  
+            }else{
+              str="statisticOperate!getRank?type="+chartType+"&param="+encodeURI(encodeURI(this.innerText));
+            }
+		
 		window.location.href=str;
 		}
 		
@@ -71,9 +81,6 @@ function loadrightrank (mtarget,mJson) {
     	//将小数转换为百分数
     	Number.prototype.toPercent = function(n){n = n || 2;return ( Math.round( this * Math.pow( 10, n + 2 ) ) / Math.pow( 10, n ) ).toFixed( n ) + '%';}
     	var sum=0;
-    	for (var i = 0; i < mJson.length; i++) {   	
-    		sum+= mJson[i].nub;		
-    	}
     	for (var i = 0; i < mJson.length; i++) {
     		var n=i+1;
     		var mtitle=""+mtarget+""+n;
@@ -81,7 +88,7 @@ function loadrightrank (mtarget,mJson) {
     	    var atitle= document.getElementById(mtitle);
     	    atitle.innerText=mJson[i].name;
     	    atitle.parentNode.href += encodeURI(encodeURI(mJson[i].name));
-    	    var b=mJson[i].nub/sum;
+    	    var b=mJson[i].nub/(mJson[0]/0.7);
     	    document.getElementById(mbar).style.width=""+b.toPercent();
     		
     	}
