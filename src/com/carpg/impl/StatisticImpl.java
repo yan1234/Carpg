@@ -28,20 +28,20 @@ public class StatisticImpl implements StatisticDao {
 		if (type.equals(StatisticDao.BRAND_YEAR_COUNT)){ //品牌按年份统计
 			sql = "select start_time, count(*),user_car_id from complaint where car_brand=? group by start_time order by start_time DESC";
 			
-		}else if (type.equals(StatisticDao.BRAND_COUNT_YEAR)){ //某一年内各个品牌的状况统计
+		}else if (type.equals(StatisticDao.YEAR_BRAND_COUNT)){ //某一年内各个品牌的状况统计
 			sql = "select car_brand, count(*) from complaint where start_time = ? group by car_brand order by count(*) DESC";
 			
 		}else if (type.equals(StatisticDao.BRAND_CARTYPE_COUNT)){ //某一个品牌中各个车型的状况统计
 			sql = "select car_type, count(*) from complaint where car_brand=? group by car_type order by count(*) DESC";
 			
 		}else if (type.equals(StatisticDao.PROBLEM_YEAR_COUNT)){ //问题按年份统计
-			sql = "select type, count(*) from complaint, car_problems where problem_id = ? group by start_time order by count(*) desc";
+			sql = "select start_time, count(*) from complaint, car_problems where problem_id = ? group by start_time order by start_time desc";
 			
-		}else if (type.equals(StatisticDao.PROBLEM_COUNT_YEAR)){ //某一年内各个问题的状况统计
+		}else if (type.equals(StatisticDao.YEAR_PROBLEM_COUNT)){ //某一年内各个问题的状况统计
 			sql = "select type, count(*) from complaint, car_problems where start_time = ? group by problem_id order by count(*) desc";
 			
 		}else if (type.equals(StatisticDao.PROBLEM_CARTYPE_COUNT)){		//某一个问题中各个车型的状况统计
-			sql = "select car_brand, count(*) from complaint where problem_id = ? group by car_brand order by count(*) desc";
+			sql = "select car_type, count(*) from complaint where problem_id = ? group by car_type order by count(*) desc";
 			
 		}
 		map = (LinkedHashMap<String, Integer>)getCountByParam(sql, param);

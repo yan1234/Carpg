@@ -155,6 +155,14 @@ public class ComplaintAction extends ActionSupport implements ServletRequestAwar
 		System.out.println("json： "+msg);
 		return "view";
 	}
+	
+	//展示统计页的吐槽互动，主要是根据carType车型筛选展示
+	public String complaintVIewByCarType(String carType) throws Exception{
+		List<Object> list = comDao.getNewComplaintsByCarType(carType);
+		JsonTool json = new JsonTool();
+		msg = json.toJsonArrayString(list);
+		return "view";
+	}
 	public void setServletRequest(HttpServletRequest arg0) {
 		// TODO Auto-generated method stub
 		this.request = arg0;

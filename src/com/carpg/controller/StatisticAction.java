@@ -1,5 +1,6 @@
 package com.carpg.controller;
 
+import java.net.URLDecoder;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -38,6 +39,9 @@ public class StatisticAction extends ActionSupport implements ServletRequestAwar
 	}
 	//根据参数类别获取排行榜
 	public String getRank() throws Exception{
+		System.out.println("车品牌: "+param);
+		param = URLDecoder.decode(URLDecoder.decode(param, "utf-8"));
+		System.out.println("车品牌: "+param);
 		//执行操作
 		StatisticDao staDao = new StatisticImpl();
 		//调用中间的调度层control函数
@@ -58,7 +62,14 @@ public class StatisticAction extends ActionSupport implements ServletRequestAwar
 		msg = array.toString();
 		return "rank";
 	}
-	
+	//问题统计最后跳转到对应的吐槽抱怨,传递的参数为carType(param)
+	public void toCompliant() throws Exception{
+		ComplaintAction cAction = new ComplaintAction();
+		//将carType传递给抱怨操作用于筛选对应的抱怨信息
+		cAction.setServletRequest(request);
+		//将参数车型传递给抱怨操作action
+		cAction.complaintVIewByCarType(param);
+	}
 
 	public void setServletRequest(HttpServletRequest arg0) {
 		// TODO Auto-generated method stub

@@ -200,5 +200,51 @@ public class ComplaintImpl implements ComplaintDao {
 		//关闭数据库连接conn
 		DBHelper.close();
 	}
+
+	public List<Object> getNewComplaintsByCarType(String carType) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		List<Object> list = new ArrayList<Object>();
+		conn = DBHelper.getConn();
+		try {
+			//从最新的开始取出数据
+			sql = "select * from complaint, car_problems where car_type = ? order by time desc limit 20";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, carType);
+			System.out.println("执行查询语句：");
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				System.out.println("取出数据： "+rs.getRow());
+				Complaint com = new Complaint();
+				com.setId(rs.getInt("id"));
+				com.setUser_id(rs.getInt("user_id"));
+				com.setUser_name(rs.getString("user_name"));
+				com.setUser_car_id(rs.getInt("user_car_id"));
+				com.setCar_brand(rs.getString("car_brand"));
+				com.setCar_type(rs.getString("car_type"));
+				com.setProblem_id(rs.getInt("problem_id"));
+				com.setTime(rs.getString("time"));
+				com.setStart_time(rs.getString("start_time"));
+				com.setFrequency(rs.getString("frequency"));
+				com.setCourse(rs.getString("course"));
+				com.setSolution(rs.getString("solution"));
+				com.setFee(rs.getInt("fee"));
+				com.setImage(rs.getString("image"));
+				com.setMark(rs.getString("mark"));
+				com.setMileage(rs.getInt("mileage"));
+				
+				com.setProblem_type(rs.getString("type"));
+				com.setProblem_problem(rs.getString("problem"));
+				com.setProblem_detail(rs.getString("detail"));
+				list.add(com);				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.close();
+		System.out.println("信息列表："+ list.size());
+		return list;
+	}
 }
 
