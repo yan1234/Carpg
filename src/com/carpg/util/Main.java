@@ -3,6 +3,7 @@ package com.carpg.util;
 
 import java.util.Calendar;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 
 
@@ -28,7 +29,12 @@ public class Main {
 			"众泰~V10","力帆~320","力帆~330","力帆~520","力帆~530","力帆~620","力帆~630","力帆~720","力帆~820","力帆~X50","力帆~X60","力帆~丰顺","力帆~兴顺"};
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		ResourceBundle resources = ResourceBundle.getBundle("jdbc");
+		System.out.println("driver: "+ resources.getString("driver").trim());
+		
+		
 		//通过程序自动向数据库写入数据
+		/*
 		Calendar cal = Calendar.getInstance();
 		System.out.println("start: "+cal.getTimeInMillis());
 		for (int i=0; i < 10000; i++){
@@ -40,7 +46,7 @@ public class Main {
 		}
 		Calendar cal1 = Calendar.getInstance();
 		System.out.println("start: "+cal1.getTimeInMillis());
-
+		*/
 	}
 	public static Complaint setCom(){
 		Complaint com = new Complaint();

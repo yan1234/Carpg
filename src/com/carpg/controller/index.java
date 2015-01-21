@@ -1,8 +1,12 @@
 package com.carpg.controller;
 
+import java.util.ResourceBundle;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
@@ -27,6 +31,21 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 	//首页的请求转发
 	public String execute() throws Exception{
 		System.out.println("首页请求");
+		//取出数据库的链接属性，并存在全局变量application中
+		ResourceBundle resources = ResourceBundle.getBundle("jdbc");
+		ServletContext application = ServletActionContext.getServletContext();
+		application.setAttribute("driver", resources.getString("driver").trim());
+		application.setAttribute("url", resources.getString("url").trim());
+		application.setAttribute("user", resources.getString("user").trim());
+		application.setAttribute("password", resources.getString("password").trim());
+		
+		//取出数据
+		getData();
+		
+		return "index";
+	}
+	//取出首页默认的数据
+	private void getData() throws Exception{
 		//将首页动态展示的信息传递给页面前端（session或其他）
 		//得到首页的统计展示数据
 		StatisticAction staAction = new StatisticAction();
@@ -48,10 +67,7 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 		
 		request.getSession().setAttribute("msgStatistic0", msgStatistic0);
 		request.getSession().setAttribute("msgStatistic1", msgStatistic1);
-		
-		return "index";
 	}
-
 	public void setServletRequest(HttpServletRequest arg0) {
 		// TODO Auto-generated method stub
 		this.request = arg0;

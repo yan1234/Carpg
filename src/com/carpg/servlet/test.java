@@ -2,11 +2,15 @@ package com.carpg.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 
 public class test extends HttpServlet {
@@ -41,8 +45,31 @@ public class test extends HttpServlet {
 
 		response.setContentType("text/html;chartset:utf-8");
 		PrintWriter out = response.getWriter();
-		
-	    
+		String temp = "";
+		Connection conn = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			temp = "class success";
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			temp = "class error";
+			e.printStackTrace();
+		}finally{
+			try {
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpgdb?useUnicode=true&characterEncoding=utf-8", 
+						"carpgdb", "143566nls");
+				temp = "conn success";
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				temp = "conn error";
+				e.printStackTrace();
+			}finally{
+				if (temp.endsWith("conn error")){
+					temp = "conn null";
+				}
+			}
+		}
+	    out.print(temp);
 		out.flush();
 		out.close();
 	}

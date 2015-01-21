@@ -2,6 +2,7 @@ package com.carpg.util;
 
 import java.util.Date;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -15,15 +16,37 @@ import javax.mail.internet.MimeMessage.RecipientType;
 
 public class JavaMail {
 	
-	private final String username="tao_baoguang@163.com";
-	private final String password="taobaoguang1";
+	//表示邮件发送的配置
+	private String transport = null;
+	private String host = null;
+	private String port = null;
+	private String auth = null;
+	private String username=null;
+	private String password=null;
 	
+	//表示邮件处理的servlet对象路径
+	private String url;
+
+	private void config(){
+		//获取配置文件
+		ResourceBundle resources = ResourceBundle.getBundle("javamail");
+		transport = resources.getString("transport").trim();
+		host = resources.getString("host").trim();
+		port = resources.getString("port").trim();
+		auth = resources.getString("auth").trim();
+		username = resources.getString("username").trim();
+		password = resources.getString("password").trim();
+		url = resources.getString("url").trim();
+		
+	}
 	 private Message getMessage(){
+		 //取出配置信息
+		 config();
 	  Properties p=new Properties();
-	  p.put("mail.transport.protocol","smtp");
-	  p.put("mail.smtp.host","smtp.163.com");
-	  p.put("mail.smtp.port","25");
-	  p.put("mail.smtp.auth","true");
+	  p.put("mail.transport.protocol",transport);
+	  p.put("mail.smtp.host",host);
+	  p.put("mail.smtp.port",port);
+	  p.put("mail.smtp.auth",auth);
 	  
 	  MyAuth auth = new MyAuth(username, password);
 	  Session session=Session.getInstance(p, auth);
@@ -39,8 +62,8 @@ public class JavaMail {
 	   message.setRecipient(RecipientType.TO,new InternetAddress(email));
 	   message.setSentDate(new Date());
 	   message.setSubject("Carpg");
-	   String m="<a href="+"http://120.24.211.77:8080/Carpg/servlet/MailServlet.sl?name="+email+"&type="+type+"&randMd5="+code+">" +
-	     "http://120.24.211.77:8080/Carpg/servlet/MailServlet.sl?name="+email+"&type="+type+"&randMd5="+code+"</a>";
+	   String m="<a href="+url+"/servlet/MailServlet.sl?name="+email+"&type="+type+"&randMd5="+code+">" +
+	     url+"/servlet/MailServlet.sl?name="+email+"&type="+type+"&randMd5="+code+"</a>";
 	   message.setContent(m,"text/html;charset=utf-8");
 	   Transport.send(message);
 	  }
