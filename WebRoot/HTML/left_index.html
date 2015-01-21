@@ -48,13 +48,12 @@
                 	<li  onclick="postCar(this)"><a href="#">江淮</a></li>
                 	<li  onclick="postCar(this)"><a href="#">众泰</a></li>                	
                 	<li  onclick="postCar(this)"><a href="#">力帆</a></li>
-                	<li class="right">
-                	
-                		<select name="carBrand" id="brand">
-                			<option value="default">--选择您关心的车--</option>
-                		</select>
-                		<select id="serial" hidden="true"></select>
-                		<form method="post" action="statisticOperate!getRank" id="car_form" style="display: none;">
+                	<li class="right">                		
+                		<form method="post" action="statisticOperate!getRank" id="car_form">
+                        <select name="carBrand" id="brand">
+                            <option value="default">--选择您关心的车--</option>
+                        </select>
+                        <select id="serial" hidden="true"></select>
                 		<input type="text" id="param" name="param" hidden="true" />
                 		<input type="text" id="type" name="type" hidden="true" value="brand_year_count"/>
                 		<input type="submit" id = "go" value="GO" onClick="return postCar(this);"/>
