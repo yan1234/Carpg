@@ -883,6 +883,7 @@ a.showAll {
 	overflow: hidden;
 	color: #FFFFFF;
 	line-height: 40px;
+	padding: 0 10px;
 }
 .rankBarContent {
 	margin-left: 20px;
