@@ -111,7 +111,23 @@ function loadrightrank (mtarget,mJson) {
     		
     	}
     }
-    
+
+    function golTipBox(){
+        var gol=true;
+        golshow();
+        setInterval("gol=!gol;golshow();",5000);
+             function golshow(){
+        var abox=document.getElementById("tipBox");
+        if (gol===true){
+        abox.style.display="block";
+        abox.style.height="100px";
+        }else{
+        abox.style.display="none";
+        abox.style.height="0";   
+        }
+        }
+    }
+
     
 	jakechartJson=[
 	{"name":"汽车悬架","nub":701},
