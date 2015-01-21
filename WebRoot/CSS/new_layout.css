@@ -372,13 +372,16 @@ iframe {
 .problemRank_text {
 	width: 140px;
 	height: 106px;
-	text-align: center;
 	float: left;
 }
 .problemRank_text li{
-	height: 23px;
-	line-height: 23px;
-	margin-top: 10px;
+	height: 35px;
+}
+.problemRank_text h4{
+	text-align: right;
+}
+.problemRank_text h6{
+	text-align: right;
 }
 .problemRank_bar {
 	width: 190px;
@@ -893,10 +896,10 @@ a.showAll {
 }
 .rankBar {
 	height: 300px;
-	min-width: 666px;
+	min-width: 668px;
 }
 .rankBar li {
-	width: 35px;
+	width: 38px;
 	text-align: center;
 	margin: 0 15px;
 	height: 100%;

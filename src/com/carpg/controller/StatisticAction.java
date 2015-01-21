@@ -63,13 +63,16 @@ public class StatisticAction extends ActionSupport implements ServletRequestAwar
 		return "rank";
 	}
 	//问题统计最后跳转到对应的吐槽抱怨,传递的参数为carType(param)
-	public String toCompliant() throws Exception{
+	public String toComplaint() throws Exception{
 		String temp;
 		ComplaintAction cAction = new ComplaintAction();
 		//将carType传递给抱怨操作用于筛选对应的抱怨信息
 		cAction.setServletRequest(request);
+		System.out.println("车型： "+param);
 		//将参数车型传递给抱怨操作action
 		temp = cAction.complaintVIewByCarType(param);
+		msg = cAction.getMsg();
+		System.out.println("抱怨列表： "+msg);
 		return temp;
 	}
 	//统计首页的最热问题榜和最热车型榜,flag=0:最热问题，1：最热车型

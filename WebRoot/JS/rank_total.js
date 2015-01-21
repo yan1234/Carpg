@@ -13,26 +13,32 @@ function setType(){
     {
     	case "brand_year_count" :
 	        document.getElementById("rankTitle").innerHTML=XTitle+"年代一览";
+            document.getElementById("chartY").innerHTML=XTitle+"年代";
     		chartType="year_brand_count";    		
     		break;
     	case "year_brand_count" :
     		document.getElementById("rankTitle").innerHTML=XTitle+"品牌一览";
+            document.getElementById("chartY").innerHTML=XTitle+"品牌";
     		chartType="brand_cartype_count";
     		break;
     	case "brand_cartype_count" :
     		document.getElementById("rankTitle").innerHTML=XTitle+"车型一览";
+            document.getElementById("chartY").innerHTML=XTitle+"车型";
     		chartType="showComplain";
     		break;
     	case "problem_year_count" :
     		document.getElementById("rankTitle").innerHTML=XTitle+"年代一览";
+            document.getElementById("chartY").innerHTML=XTitle+"年代";
     		chartType="year_problem_count" ;
     		break;
     	case "year_problem_count" :
     		document.getElementById("rankTitle").innerHTML=XTitle+"缺陷一览";
+            document.getElementById("chartY").innerHTML=XTitle+"缺陷";
     		chartType="problem_cartype_count";
     		break;
     	case "problem_cartype_count" :
     		document.getElementById("rankTitle").innerHTML=XTitle+"车型一览";
+            document.getElementById("chartY").innerHTML=XTitle+"车型";
     		chartType="showComplain";
     		break;
     }
@@ -50,9 +56,7 @@ function showChart (bjson) {
 		var a=document.createElement("li");
 		//柱状图文字信息
 		a.innerHTML=""+bjson[i].name;
-		a.Alt=""+bjson[i].nub;
-
-
+		a.title="关于"+bjson[i].name+"收到的吐槽数:"+bjson[i].nub;
 		var b=bjson[i].nub/(bjson[0].nub/0.7);
 		//柱状图高度
 		a.style.backgroundPositionY=""+b.toPercent();
@@ -64,7 +68,7 @@ function showChart (bjson) {
               if (atext.indexOf(".")>0)  {
                 atext= atext.split(".")[1]
               }
-              str="statisticOperate!getRank?type="+toComplaint+"&param="+encodeURI(encodeURI(atext));  
+              str="statisticOperate!toComplaint?param="+encodeURI(encodeURI(atext));  
             }else{
               str="statisticOperate!getRank?type="+chartType+"&param="+encodeURI(encodeURI(this.innerText));
             }
@@ -76,7 +80,7 @@ function showChart (bjson) {
 	}
 }
 
-
+//加载右边排行
 function loadrightrank (mtarget,mJson) {
     	//将小数转换为百分数
     	Number.prototype.toPercent = function(n){n = n || 2;return ( Math.round( this * Math.pow( 10, n + 2 ) ) / Math.pow( 10, n ) ).toFixed( n ) + '%';}
@@ -86,9 +90,23 @@ function loadrightrank (mtarget,mJson) {
     		var mtitle=""+mtarget+""+n;
     		var mbar=""+mtarget+"Bar"+n;
     	    var atitle= document.getElementById(mtitle);
-    	    atitle.innerText=mJson[i].name;
-    	    atitle.parentNode.href += encodeURI(encodeURI(mJson[i].name));
-    	    var b=mJson[i].nub/(mJson[0]/0.7);
+            var ah4=document.createElement("h4");
+            var ah6=document.createElement("h6");
+            var acontent=mJson[i].name.split("~");
+            var aparam;
+            if (mtarget==="hotProblem"){            
+                ah4.innerHTML=""+acontent[0];                
+                ah6.innerHTML=acontent[1]+" "+acontent[2];
+                aparam=acontent[0];
+            }else{
+                ah4.innerHTML=acontent[0]+" "+acontent[1];
+                ah6.innerHTML=""+acontent[2];  
+                aparam=acontent[0];             
+            }
+            atitle.appendChild(ah4);
+            atitle.appendChild(ah6);
+    	    atitle.href += encodeURI(encodeURI(aparam));
+    	    var b=mJson[i].nub/(mJson[0].nub/0.7);
     	    document.getElementById(mbar).style.width=""+b.toPercent();
     		
     	}
