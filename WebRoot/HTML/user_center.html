@@ -1,26 +1,15 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-	String msg = (String)request.getAttribute("msg");
-%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>车曝光-促进车辆质量提升</title>
-		<link rel="stylesheet" href="../CSS/new_layout.css" />
-		<link rel="stylesheet" href="../CSS/color.css" />
-		<script type="text/javascript" src="../JS/external/json2.js"></script>
-		<script type="text/javascript" src="../JS/external/brand.js"></script>
-		<script type="text/javascript" src="../JS/external/brand_select.js"></script>
-	    <script type="text/javascript" src="../JS/util.js" ></script>
-	    <script src="../JS/setmeta.js" type="text/javascript" charset="utf-8"></script>
-	    <script type="text/javascript">
-        addLoadEvent(setmeta);//设置meta内容
-	    </script>
+		<meta charset="utf-8">
+		<title>车曝光-查看吐槽</title>
+		<link rel="stylesheet" type="text/css" href="../CSS/new_layout.css"/>
+		<script src="../JS/util.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../JS/loadmessage.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-<jsp:include page="/JSP/module_header.jsp" flush="true" ></jsp:include>
-        <div  class="global_content">
-            <div id="view_left" class="left">
+		<div  class="global_content">
+			<div id="view_left" class="left">
 				<ul>
 					<li class="quicklook1"><a href="#"><h4>吐槽记录 》 》</h4><h6>自黑式嘲讽</h6></a></li>
     				<li class="quicklook2"><a href="#"><h4>我的投稿 》 》</h4><h6>要成为业余专家的人</h6></a></li>
@@ -33,23 +22,16 @@
 						<li><a href="">这是您在车曝光的记录</a></li>
 					</ul>
 				</div>
-				<ul class="left-li-clear" id="newsListContent">	
-//var msgJson=jakeJson;
-var msgJson = <%= msg %>;
-var maxsize=4;//设置每次展示条数
-var msgCount=0;//单页消息计数器
-var msgType="news";//设置展示模式，新闻or吐槽
-function rshow(){	
-loadmessage(maxsize);//载入
-setLiClick();
-}
+				<div id="add_ccshere">	
 
-addLoadEvent(rshow);//添加点击事件
-				</ul>
+				</div>
 				<div id="view_more" class="view_complainBorder"><a >加载更多........</a></div>
 				<div>
-					<button class="dashButtons left">上一页</button>
-					 <button class="dashButtons right">下一页</button>
+					<button class="dashButtons">上一页</button>
+					<select name="complain_page">
+						<option value="第1页">第1页</option>
+					</select>
+					 <button class="dashButtons">下一页</button>
 				</div>
 			</div>
 			
@@ -89,9 +71,6 @@ addLoadEvent(rshow);//添加点击事件
 				<div id="view_banner2" class="view_complainBorder"></div>
 			</div>
 		</div>
-<jsp:include page="/HTML/footer.html"></jsp:include>
-	
-	</body>
-</html>
 
-
+	<!--</body>
+</html>-->

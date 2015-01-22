@@ -82,6 +82,21 @@ function showChart (bjson) {
 
 //加载右边排行
 function loadrightrank (mtarget,mJson) {
+    if (mtarget==="hotProblem") {
+    mJson=[
+    {"name":"汽车悬架~一汽-大众~速腾","nub":500},
+    {"name":"变速器~一汽-大众~速腾","nub":300},
+    {"name":"引擎~上海-通用~雪佛兰","nub":160}
+    ];       
+    }else{
+    mJson=[
+    {"name":"一汽-大众~速腾~汽车悬架","nub":500},
+    {"name":"上海-通用~雪佛兰~引擎","nub":420},
+    {"name":"长安~福特~变速器","nub":300}
+    ];        
+    }
+
+
     	//将小数转换为百分数
     	Number.prototype.toPercent = function(n){n = n || 2;return ( Math.round( this * Math.pow( 10, n + 2 ) ) / Math.pow( 10, n ) ).toFixed( n ) + '%';}
     	var sum=0;
@@ -111,23 +126,31 @@ function loadrightrank (mtarget,mJson) {
     		
     	}
     }
+    function createTipBox(){
+        clearTipBox();
+        var tipbox = document.createElement("div");
+        tipbox.setAttribute("id","tipBox");
+        tipbox.innerHTML="<p>此处应为吐槽数据统计图表</p><p>车曝光正在努力地收集数据中....</p><p>请点击“我要吐槽”为车曝光添加一份力量！</p>"
+        var bb=document.getElementById("view_rankChart");
+        bb.appendChild(tipbox);
+        showTipBox();
 
-    function golTipBox(){
-        var gol=true;
-        golshow();
-        setInterval("gol=!gol;golshow();",5000);
-             function golshow(){
-        var abox=document.getElementById("tipBox");
-        if (gol===true){
-        abox.style.display="block";
-        abox.style.height="100px";
-        }else{
-        abox.style.display="none";
-        abox.style.height="0";   
-        }
-        }
     }
+    function showTipBox(){
+        document.getElementById("tipBox").style.height="100 px";
+        setTimeout("document.getElementById('tipBox').style.height='0';clearTimeout();",2000);
 
+    }
+    function clearTipBox(){
+        if (document.getElementById("view_rankChart")) {
+            if (document.getElementById("tipBox")) {
+        var father=document.getElementById("view_rankChart");
+        var son=document.getElementById("tipBox");
+        father.removeChild(son);  
+            };
+        };
+
+    }
     
 	jakechartJson=[
 	{"name":"汽车悬架","nub":701},

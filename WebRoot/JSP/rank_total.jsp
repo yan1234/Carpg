@@ -33,8 +33,10 @@ var XTitle='<%= param %>';//param 标题
 function rankload(){
 	//设置排行标题和下次点击的type
 	setType();
+
 	//创建排行榜
 	showChart(chartJson);
+
 	}
 addLoadEvent(rankload);	
 </script>
