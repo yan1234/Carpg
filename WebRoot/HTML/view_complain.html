@@ -86,11 +86,8 @@
 				</div>
 				<div id="view_more" class="view_complainBorder"><a >加载更多........</a></div>
 				<div>
-					<button class="dashButtons">上一页</button>
-					<select name="complain_page">
-						<option value="第1页">第1页</option>
-					</select>
-					 <button class="dashButtons">下一页</button>
+					<button class="dashButtons letf" onclick="window.location.href='complaintOperate!complaintView?id=-1'">首页</button>
+					 <button class="dashButtons right" onclick="window.location.href='complaintOperate!complaintView?id='+msgJson[msgJson.length-1];">下一页</button>
 				</div>
 			</div>
 			

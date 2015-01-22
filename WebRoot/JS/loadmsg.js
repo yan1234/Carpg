@@ -34,21 +34,41 @@ function setNewsColumn (nColumn) {
 function showNews () {
 	if(msgJson[msgCount].car_type){
 	var ali=document.createElement("li");
-	ali.className="newsPreContent";
+	ali.className="newsPreContent";//新闻列表容器
 	ali.value=msgCount;
-	var ap=document.createElement("p");
+	var ap=document.createElement("p");//标题容器
 	var aspan=document.createElement("span");
 	aspan.className="newsCategory left";
-	aspan.innerHTML=msgJson[msgCount].car_type;
+	aspan.innerHTML=msgJson[msgCount].car_type;//车型
 	var bspan=document.createElement("span");
 	bspan.className=aspan.className;
-	bspan.innerHTML="/"+msgJson[msgCount].agency;
+	bspan.innerHTML="/"+msgJson[msgCount].agency;//经销商
 	var cspan=document.createElement("span");
 	cspan.className=aspan.className;
-	cspan.innerHTML="/"+msgJson[msgCount].time;
+	cspan.innerHTML="/"+msgJson[msgCount].time;//发布时间
 	ap.appendChild(aspan);
 	ap.appendChild(bspan);
 	ap.appendChild(cspan);
+	
+	//通过审核的按钮
+	if (msgJson[msgCount].ok===0){
+	var abtn=document.createElement("button");
+	abtn.style.float="right";
+	abtn.innerText="通过审核";
+	abtn.onclick=function(){
+	//告知后台通过审核
+	window.location.href="reportOperate!passReport?id="+msgJson[msgCount].id;
+	}
+	var bbtn=document.createElement("button");
+	abtn.style.float="right";
+	abtn.innerText="删除";
+	bbtn.onclick=function(){
+	//告知后台删除新闻
+	window.location.href="reportOperate!delReport?id="+msgJson[msgCount].id;
+	}
+	ap.appendChild(abtn);	
+	ap.appendChild(bbtn);
+	}
 	ali.appendChild(ap);
 	var aimg=document.createElement("img");
 	aimg.src="../images/"+msgJson[msgCount].image;
@@ -69,7 +89,7 @@ function showNews () {
 	ali.appendChild(bp);
 	var espan=document.createElement("span");
 	espan.className="redLineNub right";
-	espan.innerHTML="赞";
+	espan.innerHTML="追踪它";
 	ali.appendChild(espan);
 	document.getElementById("newsListContent").appendChild(ali);
 	msgCount++;
