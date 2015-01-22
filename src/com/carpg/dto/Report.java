@@ -15,6 +15,8 @@ public class Report {
 	
 	private String car_type;
 	private String agency;
+	
+	private int ok;
 	public int getId() {
 		return id;
 	}
@@ -86,6 +88,12 @@ public class Report {
 	}
 	public void setAgency(String agency) {
 		this.agency = agency;
+	}
+	public int getOk() {
+		return ok;
+	}
+	public void setOk(int ok) {
+		this.ok = ok;
 	}
 
 }

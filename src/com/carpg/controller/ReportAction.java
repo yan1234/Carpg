@@ -7,12 +7,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.Principal;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletInputStream;
@@ -52,6 +54,7 @@ public class ReportAction extends ActionSupport implements ServletRequestAware,S
 	
 	//添加报告
 	public String addReport() throws Exception{
+		
 		//设置type的类型
 		if (report.getCategory().equals("缺陷调查")){
 			report.setType(0);
@@ -62,6 +65,7 @@ public class ReportAction extends ActionSupport implements ServletRequestAware,S
 		//获得图片的路径
 		report.setImage(fileUpload(1));
 		reportDao.addReport(report);
+		
 		return "index";
 	}
 	//展示报告信息列表,根据type类型展示信息(20条）
@@ -69,11 +73,23 @@ public class ReportAction extends ActionSupport implements ServletRequestAware,S
 		List<Object> list = reportDao.getReportsByType(report.getType(), report.getId(), 20);
 		JsonTool json = new JsonTool();
 		msg = json.toJsonArrayString(list);	
-		return "";
+		return "show";
 	}
 	//展示所有的报告信息，不分类别
 	public String showReport() throws Exception{
-		List<Object> list = reportDao.getReports(report.getId(), 20);
+		List<Object> list = null;
+		String userinfo = (String)request.getSession().getAttribute("user");
+		if (userinfo != null){
+			//获取登陆用户信息
+			String[] str = userinfo.split("~");
+			if (str[2].endsWith("车曝网")){
+				list = reportDao.getAll(report.getId(), 20);
+			}else {
+				list = reportDao.getReports(report.getId(), 20);
+			}
+		}else {
+			list = reportDao.getReports(report.getId(), 20);
+		}		
 		JsonTool json = new JsonTool();
 		msg = json.toJsonArrayString(list);
 		return "show";
@@ -83,6 +99,33 @@ public class ReportAction extends ActionSupport implements ServletRequestAware,S
 		List<Object> list = reportDao.getReportsByType(type, -1, 5);
 		JsonTool json = new JsonTool();
 		msg = json.toJsonArrayString(list);
+	}
+	//审核通过报告信息（超级用户)
+	public String passReport() throws Exception{
+		String userinfo = (String)request.getSession().getAttribute("user");
+		if (userinfo != null){
+			//获取登陆用户信息
+			String[] str = userinfo.split("~");
+			//判断用户是否为车曝网
+			if (str[1].endsWith("1")){
+				reportDao.passReport(report.getId());
+				showReport();
+			}			
+		}
+		return "show";
+	}
+	//删除报告信息（超级用户）
+	public String delReport() throws Exception{
+		String userinfo = (String)request.getSession().getAttribute("user");
+		if (userinfo != null){
+			//获取登陆用户信息
+			String[] str = userinfo.split("~");
+			if (str[1].endsWith("1")){
+				reportDao.delReport(report.getId());
+				showReport();
+			}
+		}
+		return "show";
 	}
 	//文件上传处理函数
 	public String fileUpload(int userId) throws Exception{

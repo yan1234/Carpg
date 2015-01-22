@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
@@ -16,6 +17,8 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 	
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	
+	private Logger log = Logger.getLogger(this.getClass());
 	
 	//请求的类别
 	private int typeReport;
@@ -31,6 +34,7 @@ public class index extends ActionSupport implements ServletRequestAware,ServletR
 	//首页的请求转发
 	public String execute() throws Exception{
 		System.out.println("首页请求");
+		log.info("首页请求");
 		//取出数据库的链接属性，并存在全局变量application中
 		ResourceBundle resources = ResourceBundle.getBundle("jdbc");
 		ServletContext application = ServletActionContext.getServletContext();

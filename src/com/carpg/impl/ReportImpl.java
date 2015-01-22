@@ -21,7 +21,7 @@ public class ReportImpl implements ReportDao {
 	public void addReport(Report report) {
 		// TODO Auto-generated method stub
 		conn = DBHelper.getConn();
-		sql = "insert into report value(null, ?,?,?,?,?,?,?,?,?,?,?)";
+		sql = "insert into report value(null, ?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, report.getType());
@@ -35,7 +35,7 @@ public class ReportImpl implements ReportDao {
 			pstmt.setString(9, report.getUrl());
 			pstmt.setString(10, report.getCar_type());
 			pstmt.setString(11, report.getAgency());
-			
+			pstmt.setInt(12, 0);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -50,12 +50,12 @@ public class ReportImpl implements ReportDao {
 		conn = DBHelper.getConn();
 		try {
 			if (id == -1){
-				sql = "select * from report where type = ? order by time desc limit ?";
+				sql = "select * from report where type = ? && ok = 1 order by time desc limit ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, type);
 				pstmt.setInt(2, size);
 			}else{
-				sql = "select * from report where type=? && id<=? order by time desc limit ?";
+				sql = "select * from report where type=? && id<=? && ok = 1 order by time desc limit ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, type);
 				pstmt.setInt(2, id);
@@ -77,6 +77,7 @@ public class ReportImpl implements ReportDao {
 				
 				r.setCar_type(rs.getString("car_type"));
 				r.setAgency(rs.getString("agency"));
+				r.setOk(rs.getInt("ok"));
 				list.add(r);
 			}
 		} catch (SQLException e) {
@@ -93,11 +94,11 @@ public class ReportImpl implements ReportDao {
 		conn = DBHelper.getConn();
 		try {
 			if (id == -1){
-				sql = "select * from report order by time desc limit ?";
+				sql = "select * from report where ok = 1 order by time desc limit ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, size);
 			}else{
-				sql = "select * from report where id<=? order by time desc limit ?";
+				sql = "select * from report where id<=? && ok=1 order by time desc limit ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				pstmt.setInt(2, size);
@@ -118,6 +119,7 @@ public class ReportImpl implements ReportDao {
 				
 				r.setCar_type(rs.getString("car_type"));
 				r.setAgency(rs.getString("agency"));
+				r.setOk(rs.getInt("ok"));
 				list.add(r);
 			}
 		} catch (SQLException e) {
@@ -148,6 +150,78 @@ public class ReportImpl implements ReportDao {
 		}
 		//关闭数据库连接conn
 		DBHelper.close();
+	}
+
+	public List<Object> getAll(int id, int size) {
+		// TODO Auto-generated method stub
+		List<Object> list = new ArrayList<Object>();
+		conn = DBHelper.getConn();
+		try {
+			if (id == -1){
+				sql = "select * from report order by time desc limit ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, size);
+			}else{
+				sql = "select * from report where id<=? order by time desc limit ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				pstmt.setInt(2, size);
+			}
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				Report r = new Report();
+				r.setId(rs.getInt("id"));
+				r.setType(rs.getInt("type"));
+				r.setCategory(rs.getString("category"));
+				r.setTitle(rs.getString("title"));
+				r.setSource(rs.getString("source"));
+				r.setAuthor(rs.getString("author"));
+				r.setTime(rs.getString("time"));
+				r.setContent(rs.getString("content"));
+				r.setImage(rs.getString("image"));
+				r.setUrl(rs.getString("url"));
+				
+				r.setCar_type(rs.getString("car_type"));
+				r.setAgency(rs.getString("agency"));
+				r.setOk(rs.getInt("ok"));
+				list.add(r);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.close();
+		return list;
+	}
+
+	public void delReport(int id) {
+		// TODO Auto-generated method stub
+		conn = DBHelper.getConn();
+		sql = "delete  from report where id=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.close();
+	}
+
+	public void passReport(int id) {
+		// TODO Auto-generated method stub
+		conn = DBHelper.getConn();
+		sql = "update report set ok = 1 where id=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.close();
 	}
 
 }

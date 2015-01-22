@@ -59,13 +59,8 @@ public class UserinfoImpl implements UserinfoDao {
 			pstmt.executeUpdate();
 			//发送邮件验证信息
 			JavaMail mail = new JavaMail();
-			try {
-				mail.sendVerify(user.getEmail(), user.getUseralias(), user.getUsercode(),"regist");
-				ok = true;
-			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mail.sendVerify(user.getEmail(), user.getUseralias(), user.getUsercode(),"regist");
+			ok = true;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -119,13 +114,8 @@ public class UserinfoImpl implements UserinfoDao {
 			//邮箱验证成功
 			if (count == 1){
 				JavaMail mail = new JavaMail();
-				try {
-					mail.sendVerify(email, email, code, "return_password");
-					ok = true;
-				} catch (MessagingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				mail.sendVerify(email, email, code, "return_password");
+				ok = true;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
