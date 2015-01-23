@@ -101,7 +101,7 @@ public class ReportAction extends ActionSupport implements ServletRequestAware,S
 		msg = json.toJsonArrayString(list);
 	}
 	//审核通过报告信息（超级用户)
-	public String passReport() throws Exception{
+	public void passReport() throws Exception{
 		String userinfo = (String)request.getSession().getAttribute("user");
 		if (userinfo != null){
 			//获取登陆用户信息
@@ -112,10 +112,10 @@ public class ReportAction extends ActionSupport implements ServletRequestAware,S
 				showReport();
 			}			
 		}
-		return "show";
+		response.sendRedirect("reportOperate!showReport?id="+report.getId());
 	}
 	//删除报告信息（超级用户）
-	public String delReport() throws Exception{
+	public void delReport() throws Exception{
 		String userinfo = (String)request.getSession().getAttribute("user");
 		if (userinfo != null){
 			//获取登陆用户信息
@@ -125,7 +125,7 @@ public class ReportAction extends ActionSupport implements ServletRequestAware,S
 				showReport();
 			}
 		}
-		return "show";
+		response.sendRedirect("reportOperate!showReport?id="+report.getId());
 	}
 	//文件上传处理函数
 	public String fileUpload(int userId) throws Exception{
