@@ -15,7 +15,7 @@
 			<div class="color_black"></div>
 			<div class="color_yellow"></div>
 			<div class="login_content">
-				<form id="login_reg" method="post" onsubmit="return false;">
+				<form id="login_reg" method="post" onsubmit="return send();">
 					
 						<input type="text" name="email" id="email" class="login_input" placeholder="邮箱" onblur="check_email_format(this);" />
 					
@@ -23,7 +23,7 @@
 						<input type="text" id="verify" class="login_input" placeholder="请输入验证码" onblur="return check_verify();"/>
 						<span id="validate" ><img src="../servlet/VerifyImage.sl" alt="验证码" name="checkImg" id="checkImg" onClick="document.getElementById('checkImg').src='../servlet/VerifyImage.sl?temp='+ (new Date().getTime().toString(36)); return false;"/></span>
 					</div>
-					<button class="dashButtons login_button_type3" onclick="return send();" value="找回密码">找回密码</button>
+					<button class="dashButtons login_button_type3" value="找回密码">找回密码</button>
 					<input type="text" id="type" name="type" hidden="true" value="return_psw" />
 					<!--点击找回密码后，button显示"邮件已发送,去邮箱重置密码吧，点击邮箱链接可跳转到login_setpasswd.html"-->
 					
