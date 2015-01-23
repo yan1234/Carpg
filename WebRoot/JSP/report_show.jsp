@@ -38,7 +38,6 @@ var msgType="news";//设置展示模式，新闻or吐槽
 function rshow(){
 setNewsColumn(nColumn);//设置新闻栏目名称	
 loadmessage(maxsize);//数字表示展示新闻的条数
-setLiClick();
 }
 
 addLoadEvent(rshow);//添加点击事件

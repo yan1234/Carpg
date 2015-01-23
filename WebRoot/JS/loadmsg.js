@@ -35,7 +35,6 @@ function showNews () {
 	if(msgJson[msgCount].car_type){
 	var ali=document.createElement("li");
 	ali.className="newsPreContent";//新闻列表容器
-	ali.value=msgCount;
 	var ap=document.createElement("p");//标题容器
 	var aspan=document.createElement("span");
 	aspan.className="newsCategory left";
@@ -55,17 +54,18 @@ function showNews () {
 	var abtn=document.createElement("button");
 	abtn.style.float="right";
 	abtn.innerHTML="通过审核";
-	var count=msgCount;
+	abtn.value=msgCount;
 	         abtn.onclick=function(){
 	         //告知后台通过审核
-	         window.location.href="reportOperate!passReport?id="+msgJson[count].id;
+	         window.location.href="reportOperate!passReport?id="+msgJson[this.value].id;
 	         }
 	var bbtn=document.createElement("button");
 	bbtn.style.float="right";
 	bbtn.innerHTML="删除";
+	bbtn.value=msgCount;
 	         bbtn.onclick=function(){
 	         //告知后台删除新闻
-	         window.location.href="reportOperate!delReport?id="+msgJson[count].id;
+	         window.location.href="reportOperate!delReport?id="+msgJson[this.value].id;
 	         }
 	ap.appendChild(abtn);	
 	ap.appendChild(bbtn);
@@ -76,8 +76,14 @@ function showNews () {
 	aimg.alt=""+msgJson[msgCount].title;
 	aimg.className="newsSmallPic left";
 	ali.appendChild(aimg);
-	var bp=document.createElement("p");
+	var bp=document.createElement("p");//新闻预览内容容器
 	bp.className="newsPreText";
+	bp.value=msgCount;
+	bp.onclick=function(){
+		document.getElementById("paramShow").value = JSON.stringify(msgJson[this.value]);
+		document.getElementById("formShow").submit();
+		return true;	
+	}
 	var ahref=document.createElement("a");
 	ahref.href="#";
 	var ahh=document.createElement("h2");
@@ -203,18 +209,7 @@ function getPreviewText (str) {
 	return atext;
 }
 
-//给新闻列表加上点击事件
-function setLiClick () {
-	var lia=document.getElementsByClassName("newsPreText");
-	for (var i = 0; i < lia.length; i++) {
-		lia[i].onclick=function (){
-		document.getElementById("paramShow").value = JSON.stringify(msgJson[this.value]);
-		document.getElementById("formShow").submit();
-		return true;		
-		}
 
-	}
-}
 function postShow(){
 		document.getElementById("paramShow").value = JSON.stringify(msgJson[this.value]);
 		document.getElementById("formShow").submit();
@@ -278,7 +273,7 @@ function getWindowHeight(){
 
 window.onscroll = function(){
 　　if(getScrollTop() + getWindowHeight() == getScrollHeight()){
-	 window.setTimeout("loadmessage(maxsize);setLiClick();",500);　　　　
+	 window.setTimeout("loadmessage(maxsize);",500);　　　　
 　　}
 };
 var jakeJson=[
