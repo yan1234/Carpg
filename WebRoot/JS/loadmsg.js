@@ -54,18 +54,19 @@ function showNews () {
 	if (msgJson[msgCount].ok===0){
 	var abtn=document.createElement("button");
 	abtn.style.float="right";
-	abtn.innerText="通过审核";
-	abtn.onclick=function(){
-	//告知后台通过审核
-	window.location.href="reportOperate!passReport?id="+msgJson[msgCount].id;
-	}
+	abtn.innerHTML="通过审核";
+	var count=msgCount;
+	         abtn.onclick=function(){
+	         //告知后台通过审核
+	         window.location.href="reportOperate!passReport?id="+msgJson[count].id;
+	         }
 	var bbtn=document.createElement("button");
-	abtn.style.float="right";
-	abtn.innerText="删除";
-	bbtn.onclick=function(){
-	//告知后台删除新闻
-	window.location.href="reportOperate!delReport?id="+msgJson[msgCount].id;
-	}
+	bbtn.style.float="right";
+	bbtn.innerHTML="删除";
+	         bbtn.onclick=function(){
+	         //告知后台删除新闻
+	         window.location.href="reportOperate!delReport?id="+msgJson[count].id;
+	         }
 	ap.appendChild(abtn);	
 	ap.appendChild(bbtn);
 	}
@@ -204,7 +205,7 @@ function getPreviewText (str) {
 
 //给新闻列表加上点击事件
 function setLiClick () {
-	var lia=document.getElementsByClassName("newsPreContent");
+	var lia=document.getElementsByClassName("newsPreText");
 	for (var i = 0; i < lia.length; i++) {
 		lia[i].onclick=function (){
 		document.getElementById("paramShow").value = JSON.stringify(msgJson[this.value]);
